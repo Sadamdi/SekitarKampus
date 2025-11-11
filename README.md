@@ -12,13 +12,16 @@ Website untuk membantu mahasiswa menemukan tempat makan, minum, dan layanan UMKM
 
 ## 📋 Daftar Isi
 
-- [Tentang Proyek](#-tentang-proyek)
-- [Fitur Utama](#-fitur-utama)
-- [Teknologi yang Digunakan](#-teknologi-yang-digunakan)
-- [Instalasi & Menjalankan](#-instalasi--menjalankan)
-- [Struktur Proyek](#-struktur-proyek)
-- [Deployment](#-deployment)
-- [Kontributor](#-kontributor)
+- [✨ Fitur Utama](#-fitur-utama)
+- [🛠️ Teknologi yang Digunakan](#️-teknologi-yang-digunakan)
+- [🚀 Instalasi & Menjalankan](#-instalasi--menjalankan)
+- [📁 Struktur Proyek](#-struktur-proyek)
+- [🌐 Deployment](#-deployment)
+- [🎨 Design System](#-design-system)
+- [📊 Data UMKM](#-data-umkm)
+- [🤝 Core Team](#-core-team)
+- [📄 Lisensi](#-lisensi)
+- [📞 Kontak](#-kontak)
 
 ### Kenapa Bikin Ini?
 
