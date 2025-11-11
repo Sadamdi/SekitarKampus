@@ -1,0 +1,61 @@
+{
+  "name": "direktori-umkm-sekitarkampus",
+  "version": "1.0.0",
+  "description": "Direktori Digital UMKM Sekitar Kampus - Web In Action 2025",
+  "private": true,
+  "license": "MIT",
+  "author": "Tim SekitarKampus",
+  "contributors": [
+    {
+      "name": "Sulthan Adam Rahmadi",
+      "url": "https://github.com/Sadamdi"
+    },
+    {
+      "name": "Muhammad Alif Mujaddid",
+      "url": "https://github.com/addid-cloud"
+    },
+    {
+      "name": "Keyshayara Qanita Kamila"
+    }
+  ],
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.0",
+    "react-scripts": "5.0.1",
+    "leaflet": "^1.9.4",
+    "react-leaflet": "^4.2.1",
+    "fuse.js": "^7.0.0",
+    "framer-motion": "^11.5.0",
+    "lucide-react": "^0.445.0",
+    "zustand": "^4.5.5"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.13"
+  }
+}
