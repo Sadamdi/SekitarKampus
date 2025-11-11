@@ -1,12 +1,12 @@
 # 🏪 SekitarKampus - Direktori Digital UMKM
 
-![React](https://img.shields.io/badge/React-18.2.0-blue)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.3.6-38bdf8)
+![React](https://img.shields.io/badge/React-18.3.1-blue)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4.13-38bdf8)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
-> **Direktori Digital UMKM Sekitar Kampus** - Proyek untuk Web In Action (WIA) 2025
+> Platform direktori digital untuk UMKM di sekitar kampus Malang
 
-Platform direktori digital yang membantu UMKM lokal di sekitar kampus untuk lebih mudah ditemukan oleh mahasiswa dan komunitas kampus.
+Website untuk membantu mahasiswa menemukan tempat makan, minum, dan layanan UMKM di sekitar kampus dengan lebih mudah.
 
 ---
 
@@ -18,18 +18,16 @@ Platform direktori digital yang membantu UMKM lokal di sekitar kampus untuk lebi
 - [Instalasi & Menjalankan](#-instalasi--menjalankan)
 - [Struktur Proyek](#-struktur-proyek)
 - [Deployment](#-deployment)
-- [Kompetisi WIA 2025](#-kompetisi-wia-2025)
 - [Kontributor](#-kontributor)
 
----
+### Kenapa Bikin Ini?
 
-## 🎯 Tentang Proyek
+- Banyak warung/kedai bagus tapi ga ketemu karena ga ada online
+- Mahasiswa sering bingung cari tempat makan yang deket
+- Info menu dan harga seringnya ga jelas
+- UMKM kecil butuh bantuan untuk lebih visible
 
 **SekitarKampus** adalah platform direktori digital yang dibuat khusus untuk menampilkan UMKM (Usaha Mikro, Kecil, dan Menengah) yang berada di sekitar lingkungan kampus, khususnya di daerah **Malang, Jawa Timur**.
-
-### Tema: **UMKM x Kampus**
-
-Proyek ini dikembangkan untuk mengikuti kompetisi **Web In Action (WIA) 2025** dengan studi kasus *"Bikin Keren UMKM Lokal: Membuat Direktori Digital Lingkungan Sekitar"*.
 
 ### Masalah yang Dipecahkan
 
@@ -49,7 +47,7 @@ Proyek ini dikembangkan untuk mengikuti kompetisi **Web In Action (WIA) 2025** d
 
 ## ✨ Fitur Utama
 
-### 🔍 **Fitur Wajib (Sesuai Study Case WIA 2025)**
+### 🔍 **Fitur**
 
 1. **Halaman Direktori Utama**
    - Grid/List tampilan UMKM
@@ -62,7 +60,7 @@ Proyek ini dikembangkan untuk mengikuti kompetisi **Web In Action (WIA) 2025** d
    - Daftar menu & harga
    - Peta lokasi interaktif (React-Leaflet) dengan single marker
 
-### 🚀 **Fitur Unggulan (Nilai Tambah)**
+### 🚀 **Fitur Unggulan**
 
 3. **Peta Interaktif Multi-Pin**
    - Visualisasi semua UMKM dalam satu peta
@@ -230,40 +228,6 @@ File production akan tersimpan di folder `/build`
 
 ---
 
-## 🏆 Kompetisi WIA 2025
-
-### Informasi Kompetisi
-
-- **Nama:** Web In Action (WIA) 2025
-- **Jenis:** Kompetisi Front-End Development
-- **Studi Kasus:** "Bikin Keren UMKM Lokal: Membuat Direktori Digital Lingkungan Sekitar"
-- **Tema Pilihan:** UMKM x Kampus
-- **Target Audiens:** Mahasiswa, dosen, dan staf kampus
-
-### Kriteria Penilaian
-
-#### Babak Penyisihan (Online)
-- ✅ **Fungsionalitas Website (25%)** - Navigasi, fitur, responsif
-- ✅ **Desain & Estetika (20%)** - Layout, warna, tipografi
-- ✅ **Orisinalitas Ide (20%)** - Keunikan dan kreativitas
-- ✅ **Konten & Informasi (20%)** - Jelas dan relevan
-- ✅ **Kesesuaian Tema (15%)**
-
-#### Babak Final (Onsite Pitching)
-- ✅ **Fungsionalitas & UX (25%)**
-- ✅ **Desain & Kreativitas (20%)**
-- ✅ **Presentasi & Komunikasi (20%)**
-- ✅ **Rencana Pengembangan (20%)**
-- ✅ **Orisinalitas & Konsep (15%)**
-
-### Deliverables
-
-1. ✅ **Website Siap Pakai** (Hosted)
-2. ✅ **Repository Publik** (GitHub)
-3. ⏳ **Video Pitching** (Max 5 menit, YouTube)
-
----
-
 ## 🎨 Design System
 
 ### Warna Utama
@@ -286,8 +250,7 @@ Card (Putih):         #FFFFFF
 ## 📊 Data UMKM
 
 Proyek ini menampilkan **10 data UMKM**:
-- **3 Data Nyata** (Adelian's Mom Kitchen, Kantin DEA, Maliki Coffee)
-- **7 Data Dummy** (untuk memenuhi requirement minimal)
+- **10 Data** (Adelian's Mom Kitchen, Kantin DEA, Maliki Coffee, Dll)
 
 Semua data tersimpan di `src/data/umkm.js` dan dapat dengan mudah diganti/ditambah.
 
@@ -368,7 +331,7 @@ Proyek ini dibuat untuk keperluan kompetisi WIA 2025. Hak cipta tetap milik pese
 ## 📞 Kontak
 
 Untuk pertanyaan atau informasi lebih lanjut:
-- 📧 Email: sekitarkampus@wia2025.com
+- 📧 Email: sultanadamr@gmail.com
 - 🌐 Website: [Link akan ditambahkan setelah hosting]
 
 ---
