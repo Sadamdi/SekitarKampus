@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import React, { useEffect } from "react";
+import { useParams, useNavigate, Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import {
   MapPin,
   Clock,
@@ -9,12 +9,13 @@ import {
   Heart,
   ExternalLink,
   Store,
-} from 'lucide-react';
-import { getUmkmBySlug } from '../data/umkm';
-import { useFavoritesStore } from '../store/useStore';
-import { formatPrice } from '../utils/helpers';
-import ImageGallery from '../components/ImageGallery';
-import MapView from '../components/MapView';
+  GraduationCap,
+} from "lucide-react";
+import { getUmkmBySlug } from "../data/umkm";
+import { useFavoritesStore } from "../store/useStore";
+import { formatPrice } from "../utils/helpers";
+import ImageGallery from "../components/ImageGallery";
+import MapView from "../components/MapView";
 
 const UMKMDetail = () => {
   const { slug } = useParams();
@@ -52,7 +53,7 @@ const UMKMDetail = () => {
 
   // Group menu by category if exists
   const groupedMenu = umkm.menu.reduce((acc, item) => {
-    const category = item.category || 'Menu';
+    const category = item.category || "Menu";
     if (!acc[category]) {
       acc[category] = [];
     }
@@ -80,14 +81,28 @@ const UMKMDetail = () => {
 
             <div className="flex justify-between items-start">
               <div>
-                <div className="flex items-center space-x-3 mb-2">
-                  <span className="badge">
-                    {umkm.category}
-                  </span>
+                <div className="flex items-center space-x-3 mb-2 flex-wrap gap-2">
+                  <span className="badge">{umkm.category}</span>
+                  {umkm.campus && (
+                    <span className="bg-blue-600 text-white text-sm font-semibold px-3 py-1 rounded-md flex items-center gap-2">
+                      <GraduationCap className="w-4 h-4" />
+                      {umkm.campus === "Universitas Islam Negeri Malang"
+                        ? "UIN Malang"
+                        : umkm.campus === "Universitas Brawijaya"
+                        ? "UB"
+                        : umkm.campus === "Universitas Malang"
+                        ? "UM"
+                        : umkm.campus}
+                    </span>
+                  )}
                 </div>
-                <h1 className="text-4xl md:text-5xl font-bold mb-3">{umkm.name}</h1>
+                <h1 className="text-4xl md:text-5xl font-bold mb-3">
+                  {umkm.name}
+                </h1>
                 {umkm.slogan && (
-                  <p className="text-xl text-custom-accent italic">"{umkm.slogan}"</p>
+                  <p className="text-xl text-custom-accent italic">
+                    "{umkm.slogan}"
+                  </p>
                 )}
               </div>
 
@@ -100,8 +115,8 @@ const UMKMDetail = () => {
                 <Heart
                   className={`w-7 h-7 ${
                     favorite
-                      ? 'fill-red-500 text-red-500'
-                      : 'text-gray-600 dark:text-gray-300'
+                      ? "fill-red-500 text-red-500"
+                      : "text-gray-600 dark:text-gray-300"
                   }`}
                 />
               </button>
@@ -292,4 +307,3 @@ const UMKMDetail = () => {
 };
 
 export default UMKMDetail;
-

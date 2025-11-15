@@ -1,51 +1,62 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import { motion } from 'framer-motion';
-import { MapPin } from 'lucide-react';
-import Fuse from 'fuse.js';
-import { umkmData, getCategories } from '../data/umkm';
-import { getNearestUmkm } from '../utils/helpers';
-import SearchBar from '../components/SearchBar';
-import CategoryFilter from '../components/CategoryFilter';
-import UMKMCard from '../components/UMKMCard';
+import React, { useState, useEffect, useMemo } from "react";
+import { motion } from "framer-motion";
+import { MapPin } from "lucide-react";
+import Fuse from "fuse.js";
+import { umkmData, getCategories, getCampuses } from "../data/umkm";
+import { getNearestUmkm } from "../utils/helpers";
+import SearchBar from "../components/SearchBar";
+import CategoryFilter from "../components/CategoryFilter";
+import CampusFilter from "../components/CampusFilter";
+import UMKMCard from "../components/UMKMCard";
 
 const Home = () => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('Semua');
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("Semua");
+  const [selectedCampus, setSelectedCampus] = useState("Semua");
   const [userLocation, setUserLocation] = useState(null);
-  const [locationPermission, setLocationPermission] = useState('prompt');
+  const [locationPermission, setLocationPermission] = useState("prompt");
 
   const categories = getCategories();
+  const campuses = getCampuses();
 
   // Request user location
   useEffect(() => {
-    if ('geolocation' in navigator) {
+    if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           setUserLocation({
             lat: position.coords.latitude,
             lng: position.coords.longitude,
           });
-          setLocationPermission('granted');
+          setLocationPermission("granted");
         },
         (error) => {
-          console.log('Location permission denied', error);
-          setLocationPermission('denied');
+          console.log("Location permission denied", error);
+          setLocationPermission("denied");
         }
       );
     }
   }, []);
 
+  // Filter by campus first
+  const filteredByCampus = useMemo(() => {
+    if (selectedCampus === "Semua") return umkmData;
+    return umkmData.filter((umkm) => umkm.campus === selectedCampus);
+  }, [selectedCampus]);
+
   // Filter by category
   const filteredByCategory = useMemo(() => {
-    if (selectedCategory === 'Semua') return umkmData;
-    return umkmData.filter((umkm) => umkm.category === selectedCategory);
-  }, [selectedCategory]);
+    if (selectedCategory === "Semua") return filteredByCampus;
+    return filteredByCampus.filter(
+      (umkm) => umkm.category === selectedCategory
+    );
+  }, [selectedCategory, filteredByCampus]);
 
   // Fuzzy search using Fuse.js
   const fuse = useMemo(
     () =>
       new Fuse(filteredByCategory, {
-        keys: ['name', 'description', 'category', 'slogan'],
+        keys: ["name", "description", "category", "slogan"],
         threshold: 0.3,
       }),
     [filteredByCategory]
@@ -59,7 +70,11 @@ const Home = () => {
   // Get nearest UMKM if location available
   const nearestUmkm = useMemo(() => {
     if (!userLocation) return [];
-    const nearest = getNearestUmkm(umkmData, userLocation.lat, userLocation.lng);
+    const nearest = getNearestUmkm(
+      umkmData,
+      userLocation.lat,
+      userLocation.lng
+    );
     return nearest.slice(0, 3); // Top 3 nearest
   }, [userLocation]);
 
@@ -76,7 +91,8 @@ const Home = () => {
           Temukan UMKM Sekitar Kampus
         </h1>
         <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-          Direktori digital yang membantu kamu menemukan jajanan, kopi, dan layanan UMKM terbaik di sekitar kampus Malang
+          Direktori digital yang membantu kamu menemukan jajanan, kopi, dan
+          layanan UMKM terbaik di sekitar kampus Malang
         </p>
       </motion.div>
 
@@ -90,13 +106,33 @@ const Home = () => {
         <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
       </motion.div>
 
-      {/* Category Filter */}
+      {/* Campus Filter */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
+        className="mb-8"
+      >
+        <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-4 text-center">
+          Filter Berdasarkan Kampus
+        </h3>
+        <CampusFilter
+          campuses={campuses}
+          selectedCampus={selectedCampus}
+          setSelectedCampus={setSelectedCampus}
+        />
+      </motion.div>
+
+      {/* Category Filter */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.3 }}
         className="mb-12"
       >
+        <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-4 text-center">
+          Filter Berdasarkan Kategori
+        </h3>
         <CategoryFilter
           categories={categories}
           selectedCategory={selectedCategory}
@@ -105,32 +141,38 @@ const Home = () => {
       </motion.div>
 
       {/* Nearest UMKM Section (if location available) */}
-      {locationPermission === 'granted' && nearestUmkm.length > 0 && !searchQuery && selectedCategory === 'Semua' && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="mb-12"
-        >
-          <div className="bg-gradient-to-r from-custom-primary to-blue-600 dark:from-gray-800 dark:to-gray-900 text-white rounded-2xl p-6 shadow-lg mb-6">
-            <div className="flex items-center space-x-3 mb-4">
-              <MapPin className="w-6 h-6 text-custom-accent" />
-              <h2 className="text-2xl font-bold">UMKM Terdekat Dari Lokasimu</h2>
+      {locationPermission === "granted" &&
+        nearestUmkm.length > 0 &&
+        !searchQuery &&
+        selectedCategory === "Semua" &&
+        selectedCampus === "Semua" && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="mb-12"
+          >
+            <div className="bg-gradient-to-r from-custom-primary to-blue-600 dark:from-gray-800 dark:to-gray-900 text-white rounded-2xl p-6 shadow-lg mb-6">
+              <div className="flex items-center space-x-3 mb-4">
+                <MapPin className="w-6 h-6 text-custom-accent" />
+                <h2 className="text-2xl font-bold">
+                  UMKM Terdekat Dari Lokasimu
+                </h2>
+              </div>
+              <p className="text-gray-200 dark:text-gray-400">
+                Berikut adalah UMKM yang paling dekat dari posisimu saat ini
+              </p>
             </div>
-            <p className="text-gray-200 dark:text-gray-400">
-              Berikut adalah UMKM yang paling dekat dari posisimu saat ini
-            </p>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {nearestUmkm.map((umkm) => (
-              <UMKMCard key={umkm.id} umkm={umkm} showDistance={true} />
-            ))}
-          </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {nearestUmkm.map((umkm) => (
+                <UMKMCard key={umkm.id} umkm={umkm} showDistance={true} />
+              ))}
+            </div>
 
-          <div className="border-t-2 border-gray-300 dark:border-gray-700 my-12"></div>
-        </motion.div>
-      )}
+            <div className="border-t-2 border-gray-300 dark:border-gray-700 my-12"></div>
+          </motion.div>
+        )}
 
       {/* All UMKM Section */}
       <motion.div
@@ -141,9 +183,13 @@ const Home = () => {
         <h2 className="text-3xl font-bold text-custom-primary dark:text-custom-accent mb-6">
           {searchQuery
             ? `Hasil Pencarian (${searchResults.length})`
-            : selectedCategory === 'Semua'
-            ? 'Semua UMKM'
-            : `UMKM Kategori ${selectedCategory} (${searchResults.length})`}
+            : selectedCampus !== "Semua" && selectedCategory !== "Semua"
+            ? `UMKM ${selectedCampus} - ${selectedCategory} (${searchResults.length})`
+            : selectedCampus !== "Semua"
+            ? `UMKM ${selectedCampus} (${searchResults.length})`
+            : selectedCategory !== "Semua"
+            ? `UMKM Kategori ${selectedCategory} (${searchResults.length})`
+            : `Semua UMKM (${searchResults.length})`}
         </h2>
 
         {searchResults.length === 0 ? (
@@ -153,8 +199,9 @@ const Home = () => {
             </p>
             <button
               onClick={() => {
-                setSearchQuery('');
-                setSelectedCategory('Semua');
+                setSearchQuery("");
+                setSelectedCategory("Semua");
+                setSelectedCampus("Semua");
               }}
               className="btn-primary"
             >
@@ -179,11 +226,15 @@ const Home = () => {
       >
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
           <div>
-            <h3 className="text-4xl font-bold text-custom-accent mb-2">{umkmData.length}+</h3>
+            <h3 className="text-4xl font-bold text-custom-accent mb-2">
+              {umkmData.length}+
+            </h3>
             <p className="text-gray-200">UMKM Terdaftar</p>
           </div>
           <div>
-            <h3 className="text-4xl font-bold text-custom-accent mb-2">{categories.length - 1}</h3>
+            <h3 className="text-4xl font-bold text-custom-accent mb-2">
+              {categories.length - 1}
+            </h3>
             <p className="text-gray-200">Kategori</p>
           </div>
           <div>
@@ -197,4 +248,3 @@ const Home = () => {
 };
 
 export default Home;
-
