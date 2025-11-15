@@ -53,10 +53,7 @@ export const umkmData = [
 			lat: -7.95215,
 			lng: 112.60845,
 		},
-		images: [
-			'https://freeimage.host/i/f9beV0N',
-			'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&h=400&fit=crop',
-		],
+		images: ['https://freeimage.host/i/f9beV0N'],
 		menu: [
 			{ name: 'Nasi Omelet', price: 12000 },
 			{ name: 'Nasi Ayam Katsu', price: 11000 },
@@ -135,31 +132,32 @@ export const umkmData = [
 	},
 	{
 		id: 'umkm-005',
-		name: 'Bakso Mas Kumis',
-		slug: 'bakso-mas-kumis',
+		name: 'Mie Ayam & Bakso Solo Mas Pandu',
+		slug: 'mie-ayam-bakso-solo-mas-pandu',
 		category: 'Makanan',
 		campus: 'Universitas Islam Negeri Malang',
-		slogan: 'Bakso Jumbo, Harga Irit!',
+		slogan: 'Cita Rasa Solo yang Autentik!',
 		description:
-			'Bakso legendaris dengan ukuran jumbo dan kuah kaldu sapi yang gurih. Mie kuningnya lembut dan toppingnya melimpah. Favorit mahasiswa untuk makan siang yang mengenyangkan.',
+			'Mie ayam dan bakso dengan resep khas Solo yang legendaris. Kuah kaldu sapi yang gurih, mie yang kenyal, dan bakso yang empuk. Topping melimpah dengan harga yang ramah di kantong mahasiswa. Favorit untuk makan siang dan malam.',
 		address:
-			'Jl. Candi Panggung No.23, Dinoyo, Kec. Lowokwaru, Kota Malang, Jawa Timur 65149',
-		contact: '085612345678',
+			'Jl. Gajayana No.47, Ketawanggede, Kec. Lowokwaru, Kota Malang, Jawa Timur 65144',
+		contact: '083848220201',
 		openHours: '10:00 - 22:00 WIB',
 		location: {
-			lat: -7.9515,
-			lng: 112.609,
+			lat: -7.951350328570226,
+			lng: 112.60908390381043,
 		},
 		images: [
-			'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=600&h=400&fit=crop',
+			'https://lh3.googleusercontent.com/gps-cs-s/AG0ilSyZF6yL-GOYGRnbw1abwU2kIJ36m3C8lzg2c7Kj98E7wwN4oCi7lfezSOiIK4mQcdexl1y0ryUEXn_Da0HcffcKLxxi-JM6H1X8ggjDpoq2zTaE-HZellp-Zyepwj3MVT_x53sC=s1031-k-no',
 			'https://images.unsplash.com/photo-1617093727343-374698b1b08d?w=600&h=400&fit=crop',
 		],
 		menu: [
+			{ name: 'Mie Ayam Komplit', price: 13000 },
+			{ name: 'Mie Ayam Bakso', price: 14000 },
+			{ name: 'Bakso Solo', price: 12000 },
 			{ name: 'Bakso Urat', price: 15000 },
 			{ name: 'Bakso Jumbo', price: 18000 },
-			{ name: 'Mie Ayam Bakso', price: 12000 },
-			{ name: 'Bakso Telor', price: 16000 },
-			{ name: 'Bakso Aci', price: 10000 },
+			{ name: 'Pangsit Goreng', price: 10000 },
 			{ name: 'Es Teh Manis', price: 3000 },
 		],
 	},
@@ -367,7 +365,6 @@ export const umkmData = [
 		},
 		images: [
 			'https://lh3.googleusercontent.com/p/AF1QipMIJa6fHiv7sSovdRhaKRLcyGUUTHURQV8XtIg=s1360-w1360-h1020-rw',
-			'hhttps://lh3.googleusercontent.com/gps-cs-s/AG0ilSzLoPZO-CSD6mAraSes_VSpWXtHsfBzkkjcZ4NZCMRYadbiva1DeSrw90tLpaWHGSQotE5Q6BEncCfPuEys5dCPeN_KGUH1g3v-1t9ExR__S5hzoxU4fEtdCvOGOxZxvbWYhN_3r5ZtZlsU=s1360-w1360-h1020-rw',
 		],
 		menu: [
 			{ name: 'Bakso Malang Komplit', price: 20000 },
