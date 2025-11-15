@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageCircle, X } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { umkmData } from '../data/umkm';
 
 const ChatbotButton = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,7 +23,7 @@ const ChatbotButton = () => {
   useEffect(() => {
     if (isOpen && messages.length === 0) {
       // Welcome message when first opened
-      addBotMessage('Hai! Saya Asisten KampusJajan 🤖', 'welcome');
+      addBotMessage('Hai! Saya Asisten SekitarKampus 🤖\n\nSiap bantu kamu temukan UMKM terbaik di sekitar kampus!', 'welcome');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
@@ -53,29 +54,268 @@ const ChatbotButton = () => {
     addUserMessage(option.text);
 
     switch (option.action) {
+      // === PILIH KAMPUS ===
+      case 'pilih_kampus':
+        addBotMessage(
+          'Kamu lagi di kampus mana nih? 🎓',
+          'kampus',
+          [
+            { text: 'UIN Malang', action: 'kampus_uin' },
+            { text: 'Universitas Brawijaya', action: 'kampus_ub' },
+            { text: 'Universitas Negeri Malang', action: 'kampus_um' },
+            { text: 'Lihat Semua', action: 'go_home' },
+          ]
+        );
+        break;
+
+      case 'kampus_uin':
+        addBotMessage(
+          'Ada 10 UMKM di sekitar UIN Malang! Lagi cari apa nih? 🍽️',
+          'kategori_uin',
+          [
+            { text: 'Makanan Berat', action: 'makanan_uin' },
+            { text: 'Minuman & Kopi', action: 'minuman_uin' },
+            { text: 'Jasa & ATK', action: 'jasa_uin' },
+            { text: 'Lihat Semua UIN', action: 'semua_uin' },
+          ]
+        );
+        break;
+
+      case 'kampus_ub':
+        addBotMessage(
+          'Ada 4 UMKM di sekitar UB! Lagi cari apa? 🎯',
+          'kategori_ub',
+          [
+            { text: 'Makanan Berat', action: 'makanan_ub' },
+            { text: 'Minuman & Kopi', action: 'minuman_ub' },
+            { text: 'Jasa & ATK', action: 'jasa_ub' },
+            { text: 'Lihat Semua UB', action: 'semua_ub' },
+          ]
+        );
+        break;
+
+      case 'kampus_um':
+        addBotMessage(
+          'Ada 4 UMKM di sekitar UM! Lagi butuh apa? 📚',
+          'kategori_um',
+          [
+            { text: 'Makanan Berat', action: 'makanan_um' },
+            { text: 'Minuman & Kopi', action: 'minuman_um' },
+            { text: 'Lihat Semua UM', action: 'semua_um' },
+          ]
+        );
+        break;
+
+      // === REKOMENDASI MAKAN ===
       case 'rekomendasi_makan':
         addBotMessage(
           'Budget kamu berapa nih? 💰',
           'budget_makan',
           [
             { text: 'Di bawah 10rb', action: 'budget_murah' },
-            { text: 'Di atas 10rb', action: 'budget_sedang' },
+            { text: '10rb - 15rb', action: 'budget_sedang' },
+            { text: 'Di atas 15rb', action: 'budget_premium' },
+            { text: 'Lihat Semua Makanan', action: 'semua_makanan' },
           ]
         );
         break;
 
-      case 'cari_minuman':
+      case 'budget_murah':
+        const murah = umkmData.filter(u => 
+          u.category === 'Makanan' && 
+          u.menu.some(m => m.price < 10000)
+        ).slice(0, 3);
         addBotMessage(
-          'Ada beberapa pilihan tempat minuman yang recommended! ☕',
+          `Rekomendasi UMKM dengan menu di bawah 10rb:\n\n${murah.map(u => `✨ ${u.name} - ${u.slogan}`).join('\n')}\n\nPilih yang mana?`,
+          'suggest_murah',
+          [
+            ...murah.map(u => ({ text: u.name, action: `navigate_${u.slug}` })),
+            { text: 'Cari yang lain', action: 'restart' },
+          ]
+        );
+        break;
+
+      case 'budget_sedang':
+        const sedang = umkmData.filter(u => 
+          u.category === 'Makanan' && 
+          u.menu.some(m => m.price >= 10000 && m.price <= 15000)
+        ).slice(0, 3);
+        addBotMessage(
+          `Rekomendasi UMKM dengan menu 10rb-15rb:\n\n${sedang.map(u => `✨ ${u.name} - ${u.slogan}`).join('\n')}\n\nMau ke mana?`,
+          'suggest_sedang',
+          [
+            ...sedang.map(u => ({ text: u.name, action: `navigate_${u.slug}` })),
+            { text: 'Cari yang lain', action: 'restart' },
+          ]
+        );
+        break;
+
+      case 'budget_premium':
+        const premium = umkmData.filter(u => 
+          u.category === 'Makanan' && 
+          u.menu.some(m => m.price > 15000)
+        ).slice(0, 3);
+        addBotMessage(
+          `Rekomendasi UMKM dengan menu premium:\n\n${premium.map(u => `✨ ${u.name} - ${u.slogan}`).join('\n')}\n\nPilih dong!`,
+          'suggest_premium',
+          [
+            ...premium.map(u => ({ text: u.name, action: `navigate_${u.slug}` })),
+            { text: 'Cari yang lain', action: 'restart' },
+          ]
+        );
+        break;
+
+      // === CARI MINUMAN ===
+      case 'cari_minuman':
+        const minuman = umkmData.filter(u => u.category === 'Minuman');
+        addBotMessage(
+          `Ada ${minuman.length} tempat minuman recommended! ☕\n\n${minuman.map(u => `${u.name} - ${u.campus}`).join('\n')}\n\nMau ke mana?`,
           'minuman',
           [
-            { text: 'Maliki Coffee', action: 'go_maliki' },
-            { text: 'Kedai Kopi Kampus', action: 'go_kedai_kopi' },
-            { text: 'Jus Buah Segar', action: 'go_jus' },
+            ...minuman.map(u => ({ text: u.name, action: `navigate_${u.slug}` })),
+            { text: 'Cari yang lain', action: 'restart' },
           ]
         );
         break;
 
+      // === KATEGORI PER KAMPUS ===
+      case 'makanan_uin':
+        const makanUIN = umkmData.filter(u => 
+          u.campus === 'Universitas Islam Negeri Malang' && u.category === 'Makanan'
+        ).slice(0, 4);
+        addBotMessage(
+          `Pilihan makanan di UIN:\n\n${makanUIN.map(u => `🍽️ ${u.name}`).join('\n')}`,
+          'list_makan_uin',
+          [
+            ...makanUIN.map(u => ({ text: u.name, action: `navigate_${u.slug}` })),
+            { text: 'Kembali', action: 'kampus_uin' },
+          ]
+        );
+        break;
+
+      case 'minuman_uin':
+        const minumUIN = umkmData.filter(u => 
+          u.campus === 'Universitas Islam Negeri Malang' && u.category === 'Minuman'
+        );
+        addBotMessage(
+          `Pilihan minuman di UIN:\n\n${minumUIN.map(u => `☕ ${u.name}`).join('\n')}`,
+          'list_minum_uin',
+          [
+            ...minumUIN.map(u => ({ text: u.name, action: `navigate_${u.slug}` })),
+            { text: 'Kembali', action: 'kampus_uin' },
+          ]
+        );
+        break;
+
+      case 'jasa_uin':
+        const jasaUIN = umkmData.filter(u => 
+          u.campus === 'Universitas Islam Negeri Malang' && u.category === 'Jasa'
+        );
+        addBotMessage(
+          `Pilihan jasa di UIN:\n\n${jasaUIN.map(u => `📄 ${u.name}`).join('\n')}`,
+          'list_jasa_uin',
+          [
+            ...jasaUIN.map(u => ({ text: u.name, action: `navigate_${u.slug}` })),
+            { text: 'Kembali', action: 'kampus_uin' },
+          ]
+        );
+        break;
+
+      case 'makanan_ub':
+        const makanUB = umkmData.filter(u => 
+          u.campus === 'Universitas Brawijaya' && u.category === 'Makanan'
+        );
+        addBotMessage(
+          `Pilihan makanan di UB:\n\n${makanUB.map(u => `🍽️ ${u.name}`).join('\n')}`,
+          'list_makan_ub',
+          [
+            ...makanUB.map(u => ({ text: u.name, action: `navigate_${u.slug}` })),
+            { text: 'Kembali', action: 'kampus_ub' },
+          ]
+        );
+        break;
+
+      case 'minuman_ub':
+        const minumUB = umkmData.filter(u => 
+          u.campus === 'Universitas Brawijaya' && u.category === 'Minuman'
+        );
+        addBotMessage(
+          `Pilihan minuman di UB:\n\n${minumUB.map(u => `☕ ${u.name}`).join('\n')}`,
+          'list_minum_ub',
+          [
+            ...minumUB.map(u => ({ text: u.name, action: `navigate_${u.slug}` })),
+            { text: 'Kembali', action: 'kampus_ub' },
+          ]
+        );
+        break;
+
+      case 'jasa_ub':
+        const jasaUB = umkmData.filter(u => 
+          u.campus === 'Universitas Brawijaya' && u.category === 'Jasa'
+        );
+        addBotMessage(
+          `Pilihan jasa di UB:\n\n${jasaUB.map(u => `📄 ${u.name}`).join('\n')}`,
+          'list_jasa_ub',
+          [
+            ...jasaUB.map(u => ({ text: u.name, action: `navigate_${u.slug}` })),
+            { text: 'Kembali', action: 'kampus_ub' },
+          ]
+        );
+        break;
+
+      case 'makanan_um':
+        const makanUM = umkmData.filter(u => 
+          u.campus === 'Universitas Malang' && u.category === 'Makanan'
+        );
+        addBotMessage(
+          `Pilihan makanan di UM:\n\n${makanUM.map(u => `🍽️ ${u.name}`).join('\n')}`,
+          'list_makan_um',
+          [
+            ...makanUM.map(u => ({ text: u.name, action: `navigate_${u.slug}` })),
+            { text: 'Kembali', action: 'kampus_um' },
+          ]
+        );
+        break;
+
+      case 'minuman_um':
+        const minumUM = umkmData.filter(u => 
+          u.campus === 'Universitas Malang' && u.category === 'Minuman'
+        );
+        addBotMessage(
+          `Pilihan minuman di UM:\n\n${minumUM.map(u => `☕ ${u.name}`).join('\n')}`,
+          'list_minum_um',
+          [
+            ...minumUM.map(u => ({ text: u.name, action: `navigate_${u.slug}` })),
+            { text: 'Kembali', action: 'kampus_um' },
+          ]
+        );
+        break;
+
+      // === LIHAT SEMUA ===
+      case 'semua_makanan':
+        const semuaMakan = umkmData.filter(u => u.category === 'Makanan').slice(0, 5);
+        addBotMessage(
+          `Ini ${semuaMakan.length} tempat makan recommended:\n\n${semuaMakan.map(u => `${u.name} - ${u.campus}`).join('\n')}`,
+          'all_makanan',
+          [
+            ...semuaMakan.map(u => ({ text: u.name, action: `navigate_${u.slug}` })),
+            { text: 'Lihat Di Peta', action: 'go_map' },
+          ]
+        );
+        break;
+
+      case 'semua_uin':
+      case 'semua_ub':
+      case 'semua_um':
+        navigate('/');
+        setIsOpen(false);
+        setTimeout(() => {
+          setMessages([]);
+          setCurrentStep('welcome');
+        }, 300);
+        break;
+
+      // === PESAN OTOMATIS ===
       case 'pesan_otomatis':
         addBotMessage(
           'Maaf, fitur pesanan otomatis sedang dalam pengembangan dan akan hadir di versi berikutnya! 🙏\n\nUntuk saat ini, kamu bisa hubungi UMKM langsung via WhatsApp dari halaman detail mereka.',
@@ -87,116 +327,19 @@ const ChatbotButton = () => {
         );
         break;
 
-      case 'budget_murah':
-        addBotMessage(
-          'Ada Kantin \'DEA\' nih! Menunya banyak yang di bawah 10rb dan porsinya mengenyangkan 😋\n\nMau lihat menunya?',
-          'suggest_dea',
-          [
-            { text: 'Ya, Lihat Menu', action: 'go_dea' },
-            { text: 'Info Lokasi', action: 'go_dea' },
-            { text: 'Cari yang lain', action: 'restart' },
-          ]
-        );
-        break;
-
-      case 'budget_sedang':
-        addBotMessage(
-          'Adelian\'s Mom Kitchen cocok nih! Menu mantap dengan harga hemat, banyak pilihan nasi campur 🍛\n\nMau lihat detail?',
-          'suggest_adelian',
-          [
-            { text: 'Ya, Lihat Detail', action: 'go_adelian' },
-            { text: 'Cari yang lain', action: 'restart' },
-          ]
-        );
-        break;
-
-      case 'go_maliki':
-        addBotMessage(
-          'Maliki Coffee adalah tempat ngopi santai dengan menu kopi dan non-kopi yang beragam. Harga mulai dari 6rb! ☕',
-          'redirect',
-          [
-            { text: 'Lihat Detail', action: 'navigate_maliki' },
-            { text: 'Cari yang lain', action: 'restart' },
-          ]
-        );
-        break;
-
-      case 'go_kedai_kopi':
-        addBotMessage(
-          'Kedai Kopi Kampus adalah tempat hits dengan interior instagramable. Live music setiap weekend! 🎵',
-          'redirect',
-          [
-            { text: 'Lihat Detail', action: 'navigate_kedai_kopi' },
-            { text: 'Cari yang lain', action: 'restart' },
-          ]
-        );
-        break;
-
-      case 'go_jus':
-        addBotMessage(
-          'Jus Buah Segar Ibu Rina menyediakan jus 100% buah asli tanpa pengawet. Sehat dan segar! 🍹',
-          'redirect',
-          [
-            { text: 'Lihat Detail', action: 'navigate_jus' },
-            { text: 'Cari yang lain', action: 'restart' },
-          ]
-        );
-        break;
-
-      case 'go_dea':
-        navigate('/umkm/kantin-dea');
-        setIsOpen(false);
-        // Reset chat setelah navigate
-        setTimeout(() => {
-          setMessages([]);
-          setCurrentStep('welcome');
-        }, 300);
-        break;
-
-      case 'go_adelian':
-        navigate('/umkm/adelians-mom-kitchen');
-        setIsOpen(false);
-        // Reset chat setelah navigate
-        setTimeout(() => {
-          setMessages([]);
-          setCurrentStep('welcome');
-        }, 300);
-        break;
-
-      case 'navigate_maliki':
-        navigate('/umkm/maliki-coffee');
-        setIsOpen(false);
-        // Reset chat setelah navigate
-        setTimeout(() => {
-          setMessages([]);
-          setCurrentStep('welcome');
-        }, 300);
-        break;
-
-      case 'navigate_kedai_kopi':
-        navigate('/umkm/kedai-kopi-kampus');
-        setIsOpen(false);
-        // Reset chat setelah navigate
-        setTimeout(() => {
-          setMessages([]);
-          setCurrentStep('welcome');
-        }, 300);
-        break;
-
-      case 'navigate_jus':
-        navigate('/umkm/jus-buah-segar-ibu-rina');
-        setIsOpen(false);
-        // Reset chat setelah navigate
-        setTimeout(() => {
-          setMessages([]);
-          setCurrentStep('welcome');
-        }, 300);
-        break;
-
+      // === NAVIGASI ===
       case 'go_home':
         navigate('/');
         setIsOpen(false);
-        // Reset chat setelah navigate
+        setTimeout(() => {
+          setMessages([]);
+          setCurrentStep('welcome');
+        }, 300);
+        break;
+
+      case 'go_map':
+        navigate('/map');
+        setIsOpen(false);
         setTimeout(() => {
           setMessages([]);
           setCurrentStep('welcome');
@@ -210,6 +353,16 @@ const ChatbotButton = () => {
         break;
 
       default:
+        // Handle dynamic navigation untuk semua UMKM
+        if (option.action.startsWith('navigate_')) {
+          const slug = option.action.replace('navigate_', '');
+          navigate(`/umkm/${slug}`);
+          setIsOpen(false);
+          setTimeout(() => {
+            setMessages([]);
+            setCurrentStep('welcome');
+          }, 300);
+        }
         break;
     }
 
@@ -223,12 +376,13 @@ const ChatbotButton = () => {
     if (messages.length === 0) {
       setTimeout(() => {
         addBotMessage(
-          'Ada yang bisa dibantu? 😊',
+          'Ada yang bisa dibantu? 😊\n\nTotal ada 18 UMKM di 3 kampus!',
           'main_menu',
           [
-            { text: 'Rekomendasi Makan Siang', action: 'rekomendasi_makan' },
-            { text: 'Cari Minuman', action: 'cari_minuman' },
-            { text: 'Pesan Otomatis', action: 'pesan_otomatis' },
+            { text: '🎓 Pilih Kampus', action: 'pilih_kampus' },
+            { text: '🍽️ Rekomendasi Makan', action: 'rekomendasi_makan' },
+            { text: '☕ Cari Minuman', action: 'cari_minuman' },
+            { text: '🗺️ Lihat Peta', action: 'go_map' },
           ]
         );
       }, 500);
@@ -277,8 +431,8 @@ const ChatbotButton = () => {
                   <span className="text-2xl">🤖</span>
                 </div>
                 <div>
-                  <h3 className="font-bold">Asisten KampusJajan</h3>
-                  <p className="text-xs opacity-80">Online</p>
+                  <h3 className="font-bold">Asisten SekitarKampus</h3>
+                  <p className="text-xs opacity-80">Online • 18 UMKM</p>
                 </div>
               </div>
               <button
@@ -359,12 +513,13 @@ const ChatbotButton = () => {
                     setCurrentStep('welcome');
                     setTimeout(() => {
                       addBotMessage(
-                        'Ada yang bisa dibantu? 😊',
+                        'Ada yang bisa dibantu? 😊\n\nTotal ada 18 UMKM di 3 kampus!',
                         'main_menu',
                         [
-                          { text: 'Rekomendasi Makan Siang', action: 'rekomendasi_makan' },
-                          { text: 'Cari Minuman', action: 'cari_minuman' },
-                          { text: 'Pesan Otomatis', action: 'pesan_otomatis' },
+                          { text: '🎓 Pilih Kampus', action: 'pilih_kampus' },
+                          { text: '🍽️ Rekomendasi Makan', action: 'rekomendasi_makan' },
+                          { text: '☕ Cari Minuman', action: 'cari_minuman' },
+                          { text: '🗺️ Lihat Peta', action: 'go_map' },
                         ]
                       );
                     }, 100);
