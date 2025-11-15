@@ -1,9 +1,9 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { MapPin, Clock, Phone, Heart } from 'lucide-react';
-import { motion } from 'framer-motion';
-import { useFavoritesStore } from '../store/useStore';
-import { formatDistance } from '../utils/helpers';
+import React from "react";
+import { Link } from "react-router-dom";
+import { MapPin, Clock, Phone, Heart, GraduationCap } from "lucide-react";
+import { motion } from "framer-motion";
+import { useFavoritesStore } from "../store/useStore";
+import { formatDistance } from "../utils/helpers";
 
 const UMKMCard = ({ umkm, showDistance = false }) => {
   const { toggleFavorite, isFavorite } = useFavoritesStore();
@@ -13,6 +13,14 @@ const UMKMCard = ({ umkm, showDistance = false }) => {
     e.preventDefault();
     e.stopPropagation();
     toggleFavorite(umkm.id);
+  };
+
+  const getCampusShortName = (campus) => {
+    if (!campus) return "";
+    if (campus === "Universitas Islam Negeri Malang") return "UIN Malang";
+    if (campus === "Universitas Brawijaya") return "UB";
+    if (campus === "Universitas Malang") return "UM";
+    return campus;
   };
 
   return (
@@ -40,16 +48,20 @@ const UMKMCard = ({ umkm, showDistance = false }) => {
             <Heart
               className={`w-5 h-5 ${
                 favorite
-                  ? 'fill-red-500 text-red-500'
-                  : 'text-gray-600 dark:text-gray-300'
+                  ? "fill-red-500 text-red-500"
+                  : "text-gray-600 dark:text-gray-300"
               }`}
             />
           </button>
           {/* Category Badge */}
-          <div className="absolute top-3 left-3">
-            <span className="badge">
-              {umkm.category}
-            </span>
+          <div className="absolute top-3 left-3 flex flex-col gap-2">
+            <span className="badge">{umkm.category}</span>
+            {umkm.campus && (
+              <span className="bg-blue-600 text-white text-xs font-semibold px-2 py-1 rounded-md flex items-center gap-1">
+                <GraduationCap className="w-3 h-3" />
+                {getCampusShortName(umkm.campus)}
+              </span>
+            )}
           </div>
           {/* Distance Badge (if available) */}
           {showDistance && umkm.distance !== undefined && (
@@ -83,7 +95,7 @@ const UMKMCard = ({ umkm, showDistance = false }) => {
             {/* Address */}
             <div className="flex items-start space-x-2 text-sm text-gray-600 dark:text-gray-400">
               <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
-              <span className="line-clamp-1">{umkm.address.split(',')[0]}</span>
+              <span className="line-clamp-1">{umkm.address.split(",")[0]}</span>
             </div>
 
             {/* Open Hours */}
@@ -114,4 +126,3 @@ const UMKMCard = ({ umkm, showDistance = false }) => {
 };
 
 export default UMKMCard;
-
