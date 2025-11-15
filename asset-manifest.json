@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/SekitarKampus/static/css/main.602ce57f.css",
-    "main.js": "/SekitarKampus/static/js/main.c39023fc.js",
+    "main.js": "/SekitarKampus/static/js/main.ecf76955.js",
     "index.html": "/SekitarKampus/index.html",
     "main.602ce57f.css.map": "/SekitarKampus/static/css/main.602ce57f.css.map",
-    "main.c39023fc.js.map": "/SekitarKampus/static/js/main.c39023fc.js.map"
+    "main.ecf76955.js.map": "/SekitarKampus/static/js/main.ecf76955.js.map"
   },
   "entrypoints": [
     "static/css/main.602ce57f.css",
-    "static/js/main.c39023fc.js"
+    "static/js/main.ecf76955.js"
   ]
 }
