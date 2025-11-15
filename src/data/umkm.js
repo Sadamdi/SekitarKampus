@@ -54,7 +54,7 @@ export const umkmData = [
 			lng: 112.60845,
 		},
 		images: [
-			'https://drive.google.com/uc?export=view&id=1LT4DzGNO18JD65txckLKLNmgKRk4NtP1',
+			'https://freeimage.host/i/f9beV0N',
 			'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&h=400&fit=crop',
 		],
 		menu: [
