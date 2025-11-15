@@ -53,7 +53,9 @@ export const umkmData = [
 			lat: -7.95215,
 			lng: 112.60845,
 		},
-		images: ['https://freeimage.host/i/f9beV0N'],
+		images: [
+			'https://himatif-encoder.com/uploads/articles/6887dc20d3389babf29a84cc/1763221435137_IMG_20251105_WA0029._f9a6dcbb3ff175a9.webp',
+		],
 		menu: [
 			{ name: 'Nasi Omelet', price: 12000 },
 			{ name: 'Nasi Ayam Katsu', price: 11000 },
@@ -348,8 +350,8 @@ export const umkmData = [
 	},
 	{
 		id: 'umkm-013',
-		name: 'Bakso sayur UB',
-		slug: 'Bakso sayur UB',
+		name: 'Bakso Sayur UB',
+		slug: 'bakso-sayur-ub',
 		category: 'Makanan',
 		campus: 'Universitas Brawijaya',
 		slogan: 'Bakso Malang Asli, Porsi Jumbo!',
@@ -408,8 +410,8 @@ export const umkmData = [
 	// === DATA UNIVERSITAS MALANG ===
 	{
 		id: 'umkm-015',
-		name: 'Nasi Kuning&Krawu Gobyos',
-		slug: 'Nasi Kuning&Krawu Gobyos',
+		name: 'Nasi Kuning & Krawu Gobyos',
+		slug: 'nasi-kuning-krawu-gobyos',
 		category: 'Makanan',
 		campus: 'Universitas Malang',
 		slogan: 'Sarapan Enak, Harga Pas!',
@@ -437,8 +439,8 @@ export const umkmData = [
 	},
 	{
 		id: 'umkm-016',
-		name: 'mbah no coffe eks. pujas UM',
-		slug: 'mbah no coffe eks. pujas UM',
+		name: 'Mbah No Coffee Eks. Pujas UM',
+		slug: 'mbah-no-coffe-eks-pujas-um',
 		category: 'Minuman',
 		campus: 'Universitas Malang',
 		slogan: 'Ngopi Sambil Nugas, Asik!',
@@ -467,8 +469,8 @@ export const umkmData = [
 	},
 	{
 		id: 'umkm-017',
-		name: 'Mie Ayam Bakso UMie Ayam & Bakso Solo Pak MblohM',
-		slug: 'Mie Ayam & Bakso Solo Pak Mbloh',
+		name: 'Mie Ayam & Bakso Solo Pak Mbloh',
+		slug: 'mie-ayam-bakso-solo-pak-mbloh',
 		category: 'Makanan',
 		campus: 'Universitas Malang',
 		slogan: 'Mie Ayam Enak, Porsi Besar!',
