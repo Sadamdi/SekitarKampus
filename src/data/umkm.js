@@ -54,7 +54,7 @@ export const umkmData = [
       lng: 112.60845,
     },
     images: [
-      "https://images.unsplash.com/photo-1603073116719-bf8b7528980f?w=600&h=400&fit=crop",
+      "https://drive.google.com/file/d/1LT4DzGNO18JD65txckLKLNmgKRk4NtP1/view?usp=drive_link",
       "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&h=400&fit=crop",
     ],
     menu: [
@@ -319,8 +319,8 @@ export const umkmData = [
   // === DATA UNIVERSITAS BRAWIJAYA ===
   {
     id: "umkm-011",
-    name: "Warung Makan Pak Joko",
-    slug: "warung-makan-pak-joko",
+    name: "Kantin Akademik Halalan Thoyyiban",
+    slug: "Kantin Akademik Halalan Thoyyiban",
     category: "Makanan",
     campus: "Universitas Brawijaya",
     slogan: "Nasi Padang Autentik, Harga Mahasiswa",
@@ -335,8 +335,8 @@ export const umkmData = [
       lng: 112.615,
     },
     images: [
-      "https://images.unsplash.com/photo-1551218808-94e220e084d2?w=600&h=400&fit=crop",
-      "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=600&h=400&fit=crop",
+      "https://lh3.googleusercontent.com/p/AF1QipOvGrS519H4inCHkRM3xI145DD5eCDRDB91gDSo=w408-h271-k-no",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtXmky_otbQy89o48kyEH_rS9v5e2zkHmq2A&s",
     ],
     menu: [
       { name: "Nasi Padang Rendang", price: 18000 },
@@ -348,56 +348,25 @@ export const umkmData = [
     ],
   },
   {
-    id: "umkm-012",
-    name: "Kedai Kopi UB",
-    slug: "kedai-kopi-ub",
-    category: "Minuman",
-    campus: "Universitas Brawijaya",
-    slogan: "Kopi Kekinian, Tempat Nugas Favorit",
-    description:
-      "Kedai kopi modern dengan suasana yang nyaman untuk mengerjakan tugas. WiFi cepat, colokan listrik banyak, dan menu kopi kekinian. Tempat favorit mahasiswa UB untuk diskusi dan belajar.",
-    address:
-      "Jl. Veteran No.123, Ketawanggede, Kec. Lowokwaru, Kota Malang, Jawa Timur 65145",
-    contact: "082345678901",
-    openHours: "07:00 - 23:00 WIB",
-    location: {
-      lat: -7.948,
-      lng: 112.6155,
-    },
-    images: [
-      "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=600&h=400&fit=crop",
-      "https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=600&h=400&fit=crop",
-    ],
-    menu: [
-      { category: "SIGNATURE", name: "Es Kopi Susu UB", price: 14000 },
-      { category: "SIGNATURE", name: "Es Kopi Gula Aren", price: 13000 },
-      { category: "HOT COFFEE", name: "Americano", price: 11000 },
-      { category: "HOT COFFEE", name: "Cappuccino", price: 13000 },
-      { category: "NON COFFEE", name: "Matcha Latte", price: 15000 },
-      { category: "FOOD", name: "Roti Bakar", price: 10000 },
-      { category: "FOOD", name: "Nasi Goreng", price: 15000 },
-    ],
-  },
-  {
     id: "umkm-013",
-    name: "Bakso Malang Cak Kar",
-    slug: "bakso-malang-cak-kar",
+    name: "Bakso sayur UB",
+    slug: "Bakso sayur UB",
     category: "Makanan",
     campus: "Universitas Brawijaya",
     slogan: "Bakso Malang Asli, Porsi Jumbo!",
     description:
       "Bakso Malang dengan kuah kaldu sapi yang gurih dan bakso yang kenyal. Topping lengkap mulai dari siomay, pangsit, tahu, hingga mie kuning. Favorit mahasiswa UB untuk makan siang.",
     address:
-      "Jl. MT. Haryono No.78, Ketawanggede, Kec. Lowokwaru, Kota Malang, Jawa Timur 65145",
-    contact: "083456789012",
+      " Jl. Raya Sumbersari, Sumbersari, Kec. Lowokwaru, Kota Malang, Jawa Timur 65145",
+    contact: "0851-7442-3135",
     openHours: "09:00 - 22:00 WIB",
     location: {
-      lat: -7.949,
-      lng: 112.616,
+      lat: -7.9526558603339135,
+      lng: 112.60972975428591,
     },
     images: [
-      "https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=600&h=400&fit=crop",
-      "https://images.unsplash.com/photo-1617093727343-374698b1b08d?w=600&h=400&fit=crop",
+      "https://lh3.googleusercontent.com/p/AF1QipMIJa6fHiv7sSovdRhaKRLcyGUUTHURQV8XtIg=s1360-w1360-h1020-rw",
+      "hhttps://lh3.googleusercontent.com/gps-cs-s/AG0ilSzLoPZO-CSD6mAraSes_VSpWXtHsfBzkkjcZ4NZCMRYadbiva1DeSrw90tLpaWHGSQotE5Q6BEncCfPuEys5dCPeN_KGUH1g3v-1t9ExR__S5hzoxU4fEtdCvOGOxZxvbWYhN_3r5ZtZlsU=s1360-w1360-h1020-rw",
     ],
     menu: [
       { name: "Bakso Malang Komplit", price: 20000 },
@@ -417,16 +386,16 @@ export const umkmData = [
     description:
       "Toko fotocopy dan ATK lengkap di sekitar kampus UB. Melayani print, fotocopy, scan, jilid, dan berbagai kebutuhan ATK mahasiswa. Harga murah dan pelayanan cepat.",
     address:
-      "Jl. Veteran No.90, Ketawanggede, Kec. Lowokwaru, Kota Malang, Jawa Timur 65145",
-    contact: "084567890123",
+      "Jl. Raya Sumbersari No.290b, Ketawanggede, Kec. Lowokwaru, Kota Malang, Jawa Timur 68121",
+    contact: "0815-5008-749",
     openHours: "07:00 - 21:00 WIB",
     location: {
-      lat: -7.9478,
-      lng: 112.6148,
+      lat: -7.955342112715529,
+      lng: 112.61176949596369,
     },
     images: [
-      "https://images.unsplash.com/photo-1586864387634-700ed7b010b7?w=600&h=400&fit=crop",
-      "https://images.unsplash.com/photo-1604328698692-f76ea9498e76?w=600&h=400&fit=crop",
+      "https://lh3.googleusercontent.com/gps-proxy/ALd4DhEq30f1I-QRXZ9GkgKdWeVSQdBv_tIuklEVIiq84U2Hv0L8cQdgc-jLc4y66jxqKnhWgbQKnYCVcfvrBTd5_xp4oEaL0cYqfhCbfyoKvLaYGrCMKM22gEgkCPpbZNLMsOZvsBoAS-uVsbj2edhcMyqNGSFOG9Pm_iQvw6pztQdlkpdPtel5-hQnQHWMa0xHIazamwo=w408-h306-k-no",
+      "https://lh3.googleusercontent.com/gps-proxy/ALd4DhEq30f1I-QRXZ9GkgKdWeVSQdBv_tIuklEVIiq84U2Hv0L8cQdgc-jLc4y66jxqKnhWgbQKnYCVcfvrBTd5_xp4oEaL0cYqfhCbfyoKvLaYGrCMKM22gEgkCPpbZNLMsOZvsBoAS-uVsbj2edhcMyqNGSFOG9Pm_iQvw6pztQdlkpdPtel5-hQnQHWMa0xHIazamwo=w408-h306-k-n",
     ],
     menu: [
       { name: "Fotocopy Hitam Putih", price: 200 },
@@ -441,8 +410,8 @@ export const umkmData = [
   // === DATA UNIVERSITAS MALANG ===
   {
     id: "umkm-015",
-    name: "Warung Nasi Kuning Bu Siti",
-    slug: "warung-nasi-kuning-bu-siti",
+    name: "Nasi Kuning&Krawu Gobyos",
+    slug: "Nasi Kuning&Krawu Gobyos",
     category: "Makanan",
     campus: "Universitas Malang",
     slogan: "Sarapan Enak, Harga Pas!",
@@ -457,8 +426,8 @@ export const umkmData = [
       lng: 112.62,
     },
     images: [
-      "https://images.unsplash.com/photo-1512058564366-18510be2db19?w=600&h=400&fit=crop",
-      "https://images.unsplash.com/photo-1505253758473-96b7015fcd40?w=600&h=400&fit=crop",
+      "https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/b829af3a-5dc9-4f10-9ff8-261aca166749_c6af3c22-2c4e-49e7-9bf9-38f84e79f141_Go-Resto_20180612_015503.jpg?auto=format",
+      "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSwTqb7a0abhiFvb7MbScI_yH7CJMA9wWO6dFTo5OmYX1iJMeVwKInv8-J2vgCpStR8f0xY0q9C9MkBa8TL9l9TdBOn55TJSsQVtIprvUiKBMRYd-Fbm2_9vI7ooTsTQrlsfF9g=w408-h306-k-no",
     ],
     menu: [
       { name: "Nasi Kuning Komplit", price: 12000 },
@@ -470,8 +439,8 @@ export const umkmData = [
   },
   {
     id: "umkm-016",
-    name: "Kedai Kopi UM",
-    slug: "kedai-kopi-um",
+    name: "mbah no coffe eks. pujas UM",
+    slug: "mbah no coffe eks. pujas UM",
     category: "Minuman",
     campus: "Universitas Malang",
     slogan: "Ngopi Sambil Nugas, Asik!",
@@ -479,15 +448,15 @@ export const umkmData = [
       "Kedai kopi cozy dengan suasana yang nyaman untuk mengerjakan tugas. Menu kopi dan non-kopi lengkap. WiFi gratis dan tempat yang tenang untuk fokus belajar.",
     address:
       "Jl. Semarang No.88, Sumbersari, Kec. Lowokwaru, Kota Malang, Jawa Timur 65145",
-    contact: "086789012345",
+    contact: "081233654118",
     openHours: "08:00 - 22:00 WIB",
     location: {
-      lat: -7.941,
-      lng: 112.621,
+      lat: -7.974755898748864,
+      lng: 112.61803815581878,
     },
     images: [
-      "https://images.unsplash.com/photo-1511920170033-f8396924c348?w=600&h=400&fit=crop",
-      "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=600&h=400&fit=crop",
+      "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSwU8nB_8LXgClx2FU3nzI5zsqePutmCjzHACkFjmD9onJOD7Q10QjLRY8fKslphtRHC9fi-csJNneqNDTK5CoDQt2r9IvrGkpbGuTb2NpCjXetPjTaOchB_KDK41rC5_zNOkSs51g=w408-h725-k-no",
+      "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSxSb9fXTVm1etoTm69qVB7UPlpVM1jiFFa3fJnDtUM2HBp-TLwjX8aDefie4I5X8WAx2kmlPzht9cU3iZJNzl3f3J8Cjd8eEWPHSd8OQf9EV7a8va94Lup5SfPKPaD1i_Bkd2_1=w140-h140-p-k-no",
     ],
     menu: [
       { category: "COFFEE", name: "Kopi Susu UM", price: 12000 },
@@ -500,8 +469,8 @@ export const umkmData = [
   },
   {
     id: "umkm-017",
-    name: "Mie Ayam Bakso UM",
-    slug: "mie-ayam-bakso-um",
+    name: "Mie Ayam Bakso UMie Ayam & Bakso Solo Pak MblohM",
+    slug: "Mie Ayam & Bakso Solo Pak Mbloh",
     category: "Makanan",
     campus: "Universitas Malang",
     slogan: "Mie Ayam Enak, Porsi Besar!",
@@ -512,12 +481,12 @@ export const umkmData = [
     contact: "087890123456",
     openHours: "10:00 - 21:00 WIB",
     location: {
-      lat: -7.942,
-      lng: 112.622,
+      lat: -7.958732285398843,
+      lng: 112.62236881966932,
     },
     images: [
-      "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=600&h=400&fit=crop",
-      "https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=600&h=400&fit=crop",
+      "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSzbkVxanh80PIkWr25qOC8X5cvqX-23KmxTkKg0baEKgtIZqgVlgUPywa41pF1eIlMf7l8dvtIY0UzJP53nARXvsJMIlh8XPnKDT4vHvEiA0rdux9wdXFApF2DSpwcSQoNTf8ws=w408-h544-k-no",
+      "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSz_i1nXRq5_dQUPB1CYKU9VPBw3EKpHRBisJShN82ay-TCJIOrPJMdwSvMavxNsmXvro8AK96MFboxNvyJe7-X5UnVVjQy4ItGd6F8OyJ4iS4AEJTNDdYa3mIfyeXnv1Da-GRcs=w140-h140-p-k-no",
     ],
     menu: [
       { name: "Mie Ayam Bakso Komplit", price: 14000 },
@@ -526,36 +495,6 @@ export const umkmData = [
       { name: "Bakso Urat", price: 15000 },
       { name: "Pangsit Goreng", price: 9000 },
       { name: "Es Jeruk", price: 5000 },
-    ],
-  },
-  {
-    id: "umkm-018",
-    name: "Jus Buah Segar UM",
-    slug: "jus-buah-segar-um",
-    category: "Minuman",
-    campus: "Universitas Malang",
-    slogan: "Fresh & Healthy, Buah Asli!",
-    description:
-      "Warung jus dengan buah-buahan segar tanpa pengawet. Pilihan jus lengkap dari alpukat, mangga, jeruk, hingga mix fruit. Cocok untuk mahasiswa yang ingin hidup sehat.",
-    address:
-      "Jl. Semarang No.45, Sumbersari, Kec. Lowokwaru, Kota Malang, Jawa Timur 65145",
-    contact: "088901234567",
-    openHours: "08:00 - 20:00 WIB",
-    location: {
-      lat: -7.9405,
-      lng: 112.6205,
-    },
-    images: [
-      "https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=600&h=400&fit=crop",
-      "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=600&h=400&fit=crop",
-    ],
-    menu: [
-      { name: "Jus Alpukat", price: 11000 },
-      { name: "Jus Mangga", price: 9000 },
-      { name: "Jus Jeruk", price: 8000 },
-      { name: "Jus Stroberi", price: 13000 },
-      { name: "Jus Mix", price: 13000 },
-      { name: "Jus Melon", price: 9000 },
     ],
   },
 ];
