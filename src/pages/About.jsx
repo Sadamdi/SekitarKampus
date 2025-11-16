@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Info, Target, Users, Code } from 'lucide-react';
+import UltimateAnimatedBackground from '../components/UltimateAnimatedBackground';
 
 const About = () => {
   const features = [
@@ -48,9 +49,13 @@ const About = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-custom-bg dark:bg-gray-900">
-      {/* Header */}
-      <div className="bg-custom-primary dark:bg-gray-800 text-white py-12 shadow-lg">
+    <>
+      {/* Ultimate Animated Background with UMKM Photos */}
+      <UltimateAnimatedBackground />
+      
+      <div className="min-h-screen relative z-10">
+        {/* Header */}
+        <div className="bg-custom-primary dark:bg-gray-800 text-white py-12 shadow-lg relative z-10">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -69,7 +74,7 @@ const About = () => {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 py-12 relative z-10">
         {/* Project Overview */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -308,7 +313,8 @@ const About = () => {
           </div>
         </motion.div>
       </div>
-    </div>
+      </div>
+    </>
   );
 };
 

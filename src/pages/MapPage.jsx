@@ -6,6 +6,7 @@ import { MapPin, Store, X, Eye, Maximize2 } from 'lucide-react';
 import L from 'leaflet';
 import { umkmData } from '../data/umkm';
 import { getCategories } from '../data/umkm';
+import UltimateAnimatedBackground from '../components/UltimateAnimatedBackground';
 import 'leaflet/dist/leaflet.css';
 
 // Fix leaflet default icon issue
@@ -138,9 +139,13 @@ const MapPage = () => {
   const mapZoom = focusedUmkm ? 17 : defaultZoom;
 
   return (
-    <div className="min-h-screen bg-custom-bg dark:bg-gray-900">
-      {/* Header */}
-      <div className="bg-custom-primary dark:bg-gray-800 text-white py-8 shadow-lg">
+    <>
+      {/* Ultimate Animated Background with UMKM Photos */}
+      <UltimateAnimatedBackground />
+      
+      <div className="min-h-screen relative z-10">
+        {/* Header */}
+        <div className="bg-custom-primary dark:bg-gray-800 text-white py-8 shadow-lg relative z-10">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -160,7 +165,7 @@ const MapPage = () => {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-8 relative z-10">
         {/* Category Filter & Reset Button */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -401,7 +406,8 @@ const MapPage = () => {
           </div>
         </motion.div>
       </div>
-    </div>
+      </div>
+    </>
   );
 };
 
