@@ -8,6 +8,19 @@ const UltimateAnimatedBackground = () => {
   const particlesRef = useRef([]);
   const imagesRef = useRef([]);
   const animationFrameRef = useRef();
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile device
+  useEffect(() => {
+    const checkMobile = () => {
+      const isMobileDevice = window.innerWidth < 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      setIsMobile(isMobileDevice);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Get unique UMKM images
   const umkmImages = umkmData
@@ -15,17 +28,21 @@ const UltimateAnimatedBackground = () => {
     .map(umkm => umkm.images[0])
     .slice(0, 12); // Limit to 12 images for performance
 
-  // Track mouse position
+  // Track mouse position (only on desktop)
   useEffect(() => {
+    if (isMobile) return;
+    
     const handleMouseMove = (e) => {
       setMousePos({ x: e.clientX, y: e.clientY });
     };
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+  }, [isMobile]);
 
-  // Initialize Canvas Particles
+  // Initialize Canvas Particles (disabled on mobile for performance)
   useEffect(() => {
+    if (isMobile) return; // Skip canvas particles on mobile
+    
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -122,10 +139,11 @@ const UltimateAnimatedBackground = () => {
       });
     };
 
-    // Initialize particles
+    // Initialize particles (reduced count for better performance)
     const initParticles = () => {
       particlesRef.current = [];
-      const particleCount = Math.min(umkmImages.length, 12);
+      // Reduce particle count for better performance
+      const particleCount = Math.min(umkmImages.length, 6); // Reduced from 12 to 6
       
       imagesRef.current.forEach((img, index) => {
         if (index < particleCount) {
@@ -170,7 +188,7 @@ const UltimateAnimatedBackground = () => {
         cancelAnimationFrame(animationFrameRef.current);
       }
     };
-  }, [umkmImages, mousePos]);
+  }, [umkmImages, mousePos, isMobile]);
 
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
@@ -179,99 +197,123 @@ const UltimateAnimatedBackground = () => {
         <div className="absolute inset-0 bg-gradient-mesh-animated opacity-40"></div>
       </div>
 
-      {/* Canvas for UMKM Image Particles */}
-      <canvas
-        ref={canvasRef}
-        className="absolute inset-0 w-full h-full"
-        style={{ mixBlendMode: 'normal' }}
-      />
+      {/* Canvas for UMKM Image Particles (hidden on mobile) */}
+      {!isMobile && (
+        <canvas
+          ref={canvasRef}
+          className="absolute inset-0 w-full h-full"
+          style={{ mixBlendMode: 'normal' }}
+        />
+      )}
 
-      {/* Liquid Blob Shapes - Morphing */}
-      <motion.div
-        className="absolute top-20 -left-32 w-96 h-96 rounded-full blur-3xl"
-        style={{
-          background: 'radial-gradient(circle, rgba(28,63,128,0.15) 0%, transparent 70%)',
-        }}
-        animate={{
-          scale: [1, 1.3, 1.1, 1],
-          x: [0, 50, -30, 0],
-          y: [0, 30, -20, 0],
-          borderRadius: ['60% 40% 30% 70%', '30% 60% 70% 40%', '50% 50% 50% 50%', '60% 40% 30% 70%'],
-        }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
-      />
-
-      <motion.div
-        className="absolute bottom-32 -right-32 w-[30rem] h-[30rem] rounded-full blur-3xl"
-        style={{
-          background: 'radial-gradient(circle, rgba(245,203,63,0.12) 0%, transparent 70%)',
-        }}
-        animate={{
-          scale: [1, 1.2, 1.4, 1],
-          x: [0, -60, 40, 0],
-          y: [0, -40, 30, 0],
-          borderRadius: ['40% 60% 70% 30%', '70% 30% 50% 50%', '50% 50% 30% 70%', '40% 60% 70% 30%'],
-        }}
-        transition={{
-          duration: 25,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
-      />
-
-      <motion.div
-        className="absolute top-1/2 left-1/2 w-[25rem] h-[25rem] rounded-full blur-3xl"
-        style={{
-          background: 'radial-gradient(circle, rgba(59,130,246,0.1) 0%, transparent 70%)',
-          transform: 'translate(-50%, -50%)',
-        }}
-        animate={{
-          scale: [1, 1.5, 1.2, 1],
-          rotate: [0, 180, 360],
-          borderRadius: ['50% 50% 50% 50%', '30% 70% 70% 30%', '70% 30% 30% 70%', '50% 50% 50% 50%'],
-        }}
-        transition={{
-          duration: 30,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
-      />
-
-      {/* Wave Shapes - Animated SVG */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.08 }}
-        transition={{ duration: 1 }}
-        className="absolute top-0 left-0 w-full"
-      >
-        <svg
-          viewBox="0 0 1440 320"
-          className="w-full h-auto"
-          preserveAspectRatio="none"
-        >
-          <motion.path
-            fill="#1c3f80"
-            fillOpacity="0.3"
-            d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,149.3C960,160,1056,160,1152,138.7C1248,117,1344,75,1392,53.3L1440,32L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"
+      {/* Liquid Blob Shapes - Morphing (simplified on mobile) */}
+      {!isMobile ? (
+        <>
+          <motion.div
+            className="absolute top-20 -left-32 w-96 h-96 rounded-full blur-3xl"
+            style={{
+              background: 'radial-gradient(circle, rgba(28,63,128,0.15) 0%, transparent 70%)',
+            }}
             animate={{
-              d: [
-                "M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,149.3C960,160,1056,160,1152,138.7C1248,117,1344,75,1392,53.3L1440,32L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z",
-                "M0,64L48,80C96,96,192,128,288,128C384,128,480,96,576,90.7C672,85,768,107,864,117.3C960,128,1056,128,1152,106.7C1248,85,1344,43,1392,21.3L1440,0L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z",
-                "M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,149.3C960,160,1056,160,1152,138.7C1248,117,1344,75,1392,53.3L1440,32L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z",
-              ],
+              scale: [1, 1.3, 1.1, 1],
+              x: [0, 50, -30, 0],
+              y: [0, 30, -20, 0],
+              borderRadius: ['60% 40% 30% 70%', '30% 60% 70% 40%', '50% 50% 50% 50%', '60% 40% 30% 70%'],
             }}
             transition={{
-              duration: 15,
+              duration: 20,
               repeat: Infinity,
               ease: 'easeInOut',
             }}
           />
-        </svg>
-      </motion.div>
+
+          <motion.div
+            className="absolute bottom-32 -right-32 w-[30rem] h-[30rem] rounded-full blur-3xl"
+            style={{
+              background: 'radial-gradient(circle, rgba(245,203,63,0.12) 0%, transparent 70%)',
+            }}
+            animate={{
+              scale: [1, 1.2, 1.4, 1],
+              x: [0, -60, 40, 0],
+              y: [0, -40, 30, 0],
+              borderRadius: ['40% 60% 70% 30%', '70% 30% 50% 50%', '50% 50% 30% 70%', '40% 60% 70% 30%'],
+            }}
+            transition={{
+              duration: 25,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }}
+          />
+
+          <motion.div
+            className="absolute top-1/2 left-1/2 w-[25rem] h-[25rem] rounded-full blur-3xl"
+            style={{
+              background: 'radial-gradient(circle, rgba(59,130,246,0.1) 0%, transparent 70%)',
+              transform: 'translate(-50%, -50%)',
+            }}
+            animate={{
+              scale: [1, 1.5, 1.2, 1],
+              rotate: [0, 180, 360],
+              borderRadius: ['50% 50% 50% 50%', '30% 70% 70% 30%', '70% 30% 30% 70%', '50% 50% 50% 50%'],
+            }}
+            transition={{
+              duration: 30,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }}
+          />
+        </>
+      ) : (
+        // Simplified static blobs for mobile
+        <>
+          <div
+            className="absolute top-20 -left-32 w-64 h-64 rounded-full blur-3xl opacity-30"
+            style={{
+              background: 'radial-gradient(circle, rgba(28,63,128,0.1) 0%, transparent 70%)',
+            }}
+          />
+          <div
+            className="absolute bottom-32 -right-32 w-64 h-64 rounded-full blur-3xl opacity-20"
+            style={{
+              background: 'radial-gradient(circle, rgba(245,203,63,0.08) 0%, transparent 70%)',
+            }}
+          />
+        </>
+      )}
+
+      {/* Wave Shapes - Animated SVG (disabled on mobile) */}
+      {!isMobile && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.08 }}
+          transition={{ duration: 1 }}
+          className="absolute top-0 left-0 w-full"
+        >
+          <svg
+            viewBox="0 0 1440 320"
+            className="w-full h-auto"
+            preserveAspectRatio="none"
+          >
+            <motion.path
+              fill="#1c3f80"
+              fillOpacity="0.3"
+              d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,149.3C960,160,1056,160,1152,138.7C1248,117,1344,75,1392,53.3L1440,32L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"
+              animate={{
+                d: [
+                  "M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,149.3C960,160,1056,160,1152,138.7C1248,117,1344,75,1392,53.3L1440,32L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z",
+                  "M0,64L48,80C96,96,192,128,288,128C384,128,480,96,576,90.7C672,85,768,107,864,117.3C960,128,1056,128,1152,106.7C1248,85,1344,43,1392,21.3L1440,0L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z",
+                  "M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,149.3C960,160,1056,160,1152,138.7C1248,117,1344,75,1392,53.3L1440,32L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z",
+                ],
+              }}
+              transition={{
+                duration: 15,
+                repeat: Infinity,
+                ease: 'easeInOut',
+              }}
+            />
+          </svg>
+        </motion.div>
+      )}
 
       {/* Gradient Mesh Animation CSS */}
       <style jsx>{`
