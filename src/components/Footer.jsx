@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Store, Mail, MapPin, Heart } from 'lucide-react';
+import { Store, Mail, MapPin } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-custom-primary dark:bg-gray-900 text-white mt-20">
-      <div className="container mx-auto px-4 py-12">
+    <footer className="bg-custom-primary dark:bg-gray-900 text-white mt-20 relative z-10">
+      <div className="container mx-auto px-4 py-12 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* About Section */}
           <div>
@@ -30,26 +30,26 @@ const Footer = () => {
           </div>
 
           {/* Quick Links */}
-          <div>
+          <div className="relative z-10">
             <h3 className="text-lg font-bold mb-4">Link Cepat</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/" className="text-sm text-gray-300 dark:text-gray-400 hover:text-custom-accent transition-colors duration-300">
+                <Link to="/" className="text-sm text-gray-300 dark:text-gray-400 hover:text-custom-accent transition-colors duration-300 relative z-10 pointer-events-auto touch-manipulation" style={{ touchAction: 'manipulation' }}>
                   Beranda
                 </Link>
               </li>
               <li>
-                <Link to="/map" className="text-sm text-gray-300 dark:text-gray-400 hover:text-custom-accent transition-colors duration-300">
+                <Link to="/map" className="text-sm text-gray-300 dark:text-gray-400 hover:text-custom-accent transition-colors duration-300 relative z-10 pointer-events-auto touch-manipulation" style={{ touchAction: 'manipulation' }}>
                   Peta Interaktif
                 </Link>
               </li>
               <li>
-                <Link to="/favorit" className="text-sm text-gray-300 dark:text-gray-400 hover:text-custom-accent transition-colors duration-300">
+                <Link to="/favorit" className="text-sm text-gray-300 dark:text-gray-400 hover:text-custom-accent transition-colors duration-300 relative z-10 pointer-events-auto touch-manipulation" style={{ touchAction: 'manipulation' }}>
                   UMKM Favorit
                 </Link>
               </li>
               <li>
-                <Link to="/about" className="text-sm text-gray-300 dark:text-gray-400 hover:text-custom-accent transition-colors duration-300">
+                <Link to="/about" className="text-sm text-gray-300 dark:text-gray-400 hover:text-custom-accent transition-colors duration-300 relative z-10 pointer-events-auto touch-manipulation" style={{ touchAction: 'manipulation' }}>
                   Tentang Kami
                 </Link>
               </li>
@@ -57,7 +57,7 @@ const Footer = () => {
           </div>
 
           {/* Contact & Info */}
-          <div>
+          <div className="relative z-10">
             <h3 className="text-lg font-bold mb-4">Informasi</h3>
             <p className="text-sm text-gray-300 dark:text-gray-400 mb-4">
               Proyek ini dibuat untuk kompetisi Web In Action (WIA) 2025 dengan tema "UMKM x Kampus".
@@ -68,7 +68,8 @@ const Footer = () => {
             </div>
             <Link
               to="/about"
-              className="inline-flex items-center space-x-2 text-sm text-custom-accent hover:text-yellow-400 transition-colors duration-300 mt-4"
+              className="inline-flex items-center space-x-2 text-sm text-custom-accent hover:text-yellow-400 transition-colors duration-300 mt-4 relative z-10 pointer-events-auto touch-manipulation"
+              style={{ touchAction: 'manipulation' }}
             >
               <span>Profil Tim</span>
               <span>→</span>
@@ -78,10 +79,8 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="border-t border-gray-700 dark:border-gray-800 mt-8 pt-6 text-center">
-          <p className="text-sm text-gray-300 dark:text-gray-400 flex items-center justify-center space-x-2">
-            <span>© {currentYear} SekitarKampus. Dibuat dengan</span>
-            <Heart className="w-4 h-4 text-red-500 fill-red-500 animate-pulse" />
-            <span>untuk WIA 2025</span>
+          <p className="text-sm text-gray-300 dark:text-gray-400">
+            <span>© {currentYear} SekitarKampus</span>
           </p>
           <p className="text-xs text-gray-400 dark:text-gray-500 mt-2">
             Membantu UMKM Lokal Go Digital

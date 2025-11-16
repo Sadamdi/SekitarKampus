@@ -406,7 +406,7 @@ const ChatbotButton = () => {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={openChat}
-            className="fixed bottom-6 right-6 bg-custom-accent dark:bg-custom-accent text-white dark:text-custom-primary p-3 rounded-full shadow-2xl hover:shadow-xl transition-all duration-300 z-50"
+            className="fixed bottom-20 right-6 bg-custom-accent dark:bg-custom-accent text-white dark:text-custom-primary p-3 rounded-full shadow-2xl hover:shadow-xl transition-all duration-300 z-50"
             aria-label="Open chatbot"
           >
             <img 
@@ -426,7 +426,7 @@ const ChatbotButton = () => {
             initial={{ opacity: 0, y: 100, scale: 0.8 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 100, scale: 0.8 }}
-            className="fixed bottom-6 right-6 w-96 max-w-[calc(100vw-2rem)] bg-white dark:bg-gray-800 rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden"
+            className="fixed bottom-20 right-6 w-96 max-w-[calc(100vw-2rem)] bg-white dark:bg-gray-800 rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden"
             style={{ height: '600px', maxHeight: 'calc(100vh-3rem)' }}
           >
             {/* Header */}
