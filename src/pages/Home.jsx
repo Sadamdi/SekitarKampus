@@ -8,6 +8,9 @@ import SearchBar from "../components/SearchBar";
 import CategoryFilter from "../components/CategoryFilter";
 import CampusFilter from "../components/CampusFilter";
 import UMKMCard from "../components/UMKMCard";
+import UltimateAnimatedBackground from "../components/UltimateAnimatedBackground";
+import perempuanCookies from "../img/PerempuanCookies.webp";
+import lakiThink from "../img/Laki Think.webp";
 
 const Home = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -79,22 +82,46 @@ const Home = () => {
   }, [userLocation]);
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      {/* Hero Section */}
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="text-center mb-12"
-      >
-        <h1 className="text-4xl md:text-5xl font-bold text-custom-primary dark:text-custom-accent mb-4">
-          Temukan UMKM Sekitar Kampus
-        </h1>
-        <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-          Direktori digital yang membantu kamu menemukan jajanan, kopi, dan
-          layanan UMKM terbaik di sekitar kampus Malang
-        </p>
-      </motion.div>
+    <>
+      {/* Ultimate Animated Background with UMKM Photos */}
+      <UltimateAnimatedBackground />
+      
+      <div className="container mx-auto px-4 py-8 relative z-10 overflow-visible">
+        {/* Hero Section */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-12 relative overflow-visible"
+        >
+          {/* Right Illustration - Laki Think (Rotated -70deg, sejajar dengan heading) */}
+          <motion.div
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="hidden lg:block absolute z-0"
+            style={{ 
+              transformOrigin: 'center',
+              right: '-80px',
+              top: '0px',
+            }}
+          >
+            <img 
+              src={lakiThink} 
+              alt="Ilustrasi Laki-laki" 
+              className="w-64 h-auto object-contain opacity-80"
+              style={{ transform: 'rotate(-70deg)', objectFit: 'contain' }}
+            />
+          </motion.div>
+
+          <h1 className="text-4xl md:text-5xl font-bold text-custom-primary dark:text-custom-accent mb-4">
+            Temukan UMKM Sekitar Kampus
+          </h1>
+          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            Direktori digital yang membantu kamu menemukan jajanan, kopi, dan
+            layanan UMKM terbaik di sekitar kampus Malang
+          </p>
+        </motion.div>
 
       {/* Search Bar */}
       <motion.div
@@ -106,39 +133,62 @@ const Home = () => {
         <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
       </motion.div>
 
-      {/* Campus Filter */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-        className="mb-8"
-      >
-        <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-4 text-center">
-          Filter Berdasarkan Kampus
-        </h3>
-        <CampusFilter
-          campuses={campuses}
-          selectedCampus={selectedCampus}
-          setSelectedCampus={setSelectedCampus}
-        />
-      </motion.div>
+      {/* Filter Section with Illustrations */}
+      <div className="relative mb-12 overflow-visible">
+        {/* Left Illustration - Perempuan Cookies (Rotated 70deg, sejajar dengan Filter Berdasarkan Kampus) */}
+        <motion.div
+          initial={{ opacity: 0, x: -100 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="hidden lg:block absolute z-0"
+          style={{ 
+            transformOrigin: 'center',
+            left: '-80px',
+            top: '-50px',
+          }}
+        >
+          <img 
+            src={perempuanCookies} 
+            alt="Ilustrasi Perempuan" 
+            className="w-64 h-auto object-contain opacity-80"
+            style={{ transform: 'rotate(70deg)', objectFit: 'contain' }}
+          />
+        </motion.div>
 
-      {/* Category Filter */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.3 }}
-        className="mb-12"
-      >
-        <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-4 text-center">
-          Filter Berdasarkan Kategori
-        </h3>
-        <CategoryFilter
-          categories={categories}
-          selectedCategory={selectedCategory}
-          setSelectedCategory={setSelectedCategory}
-        />
-      </motion.div>
+        {/* Campus Filter */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="mb-8 relative z-10"
+        >
+          <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-4 text-center">
+            Filter Berdasarkan Kampus
+          </h3>
+          <CampusFilter
+            campuses={campuses}
+            selectedCampus={selectedCampus}
+            setSelectedCampus={setSelectedCampus}
+          />
+        </motion.div>
+
+        {/* Category Filter */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="relative z-10"
+        >
+          <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-4 text-center">
+            Filter Berdasarkan Kategori
+          </h3>
+          <CategoryFilter
+            categories={categories}
+            selectedCategory={selectedCategory}
+            setSelectedCategory={setSelectedCategory}
+          />
+        </motion.div>
+      </div>
 
       {/* Nearest UMKM Section (if location available) */}
       {locationPermission === "granted" &&
@@ -152,14 +202,14 @@ const Home = () => {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="mb-12"
           >
-            <div className="bg-gradient-to-r from-custom-primary to-blue-600 dark:from-gray-800 dark:to-gray-900 text-white rounded-2xl p-6 shadow-lg mb-6">
+            <div className="bg-custom-accent dark:bg-custom-accent text-custom-primary rounded-2xl p-6 shadow-lg mb-6">
               <div className="flex items-center space-x-3 mb-4">
-                <MapPin className="w-6 h-6 text-custom-accent" />
-                <h2 className="text-2xl font-bold">
+                <MapPin className="w-6 h-6 text-custom-primary" />
+                <h2 className="text-2xl font-bold text-custom-primary">
                   UMKM Terdekat Dari Lokasimu
                 </h2>
               </div>
-              <p className="text-gray-200 dark:text-gray-400">
+              <p className="text-custom-primary dark:text-custom-primary opacity-80">
                 Berikut adalah UMKM yang paling dekat dari posisimu saat ini
               </p>
             </div>
@@ -243,7 +293,8 @@ const Home = () => {
           </div>
         </div>
       </motion.div>
-    </div>
+      </div>
+    </>
   );
 };
 

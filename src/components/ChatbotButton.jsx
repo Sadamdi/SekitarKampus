@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageCircle, X } from 'lucide-react';
+import { X } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { umkmData } from '../data/umkm';
+import perempuanThink from '../img/PerempuanThink.webp';
 
 const ChatbotButton = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -405,10 +406,14 @@ const ChatbotButton = () => {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={openChat}
-            className="fixed bottom-6 right-6 bg-custom-primary dark:bg-custom-accent text-white dark:text-custom-primary p-4 rounded-full shadow-2xl hover:shadow-xl transition-all duration-300 z-50"
+            className="fixed bottom-6 right-6 bg-custom-accent dark:bg-custom-accent text-white dark:text-custom-primary p-3 rounded-full shadow-2xl hover:shadow-xl transition-all duration-300 z-50"
             aria-label="Open chatbot"
           >
-            <MessageCircle className="w-7 h-7" />
+            <img 
+              src={perempuanThink} 
+              alt="Chatbot" 
+              className="w-10 h-10 object-contain"
+            />
             <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full animate-pulse"></span>
           </motion.button>
         )}
@@ -427,8 +432,12 @@ const ChatbotButton = () => {
             {/* Header */}
             <div className="bg-custom-primary dark:bg-custom-accent text-white dark:text-custom-primary p-4 flex justify-between items-center">
               <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-custom-accent dark:bg-custom-primary rounded-full flex items-center justify-center">
-                  <span className="text-2xl">🤖</span>
+                <div className="w-10 h-10 bg-custom-accent dark:bg-custom-primary rounded-full flex items-center justify-center p-2">
+                  <img 
+                    src={perempuanThink} 
+                    alt="Asisten" 
+                    className="w-6 h-6 object-contain"
+                  />
                 </div>
                 <div>
                   <h3 className="font-bold">Asisten SekitarKampus</h3>

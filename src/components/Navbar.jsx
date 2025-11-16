@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { Menu, X, Home, Map, Heart, Info, Moon, Sun, Store } from 'lucide-react';
+import { Menu, X, Home, Map, Heart, Info, Moon, Sun } from 'lucide-react';
 import { useDarkModeStore } from '../store/useStore';
 import { motion, AnimatePresence } from 'framer-motion';
+import logoSekitarKampus from '../img/LogoSekitarKampus.webp';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,8 +24,12 @@ const Navbar = () => {
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 group">
-            <div className="bg-custom-accent p-2 rounded-lg group-hover:scale-110 transition-transform duration-300">
-              <Store className="w-6 h-6 text-custom-primary" />
+            <div className="bg-custom-accent p-0.5 rounded-lg group-hover:scale-110 transition-transform duration-300 w-10 h-10 flex items-center justify-center relative">
+              <img 
+                src={logoSekitarKampus} 
+                alt="SekitarKampus Logo" 
+                className="w-80 h-80 object-contain absolute"
+              />
             </div>
             <div>
               <h1 className="text-xl font-bold">SekitarKampus</h1>
