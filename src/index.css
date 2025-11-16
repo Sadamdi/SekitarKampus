@@ -49,6 +49,38 @@
   .section-title {
     @apply text-3xl md:text-4xl font-bold text-custom-primary dark:text-custom-accent mb-6;
   }
+
+  .footer-link-button {
+    @apply text-sm text-gray-300 dark:text-gray-400 transition-colors duration-300 relative z-10 cursor-pointer text-left w-full py-1;
+  }
+
+  .footer-link-button:hover {
+    color: #f5cb3f !important;
+  }
+
+  .footer-link-button:active {
+    color: #fbbf24 !important;
+  }
+
+  .footer-profile-button {
+    @apply inline-flex items-center space-x-2 text-sm text-custom-accent transition-colors duration-300 mt-4 relative z-10 cursor-pointer;
+  }
+
+  .footer-profile-button:hover {
+    color: #fbbf24 !important;
+  }
+
+  .footer-profile-button:hover span {
+    color: #fbbf24 !important;
+  }
+
+  .footer-profile-button:active {
+    color: #f59e0b !important;
+  }
+
+  .footer-profile-button:active span {
+    color: #f59e0b !important;
+  }
 }
 
 /* Leaflet Map Dark Mode */

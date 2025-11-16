@@ -236,7 +236,7 @@ const Home = () => {
 							animate={{ opacity: 1, y: 0 }}
 							transition={{ duration: 0.5, delay: 0.3 }}
 							className="mb-12">
-							<div className="bg-custom-accent dark:bg-custom-accent text-custom-primary rounded-2xl p-6 shadow-lg mb-6">
+							<div className="card bg-custom-accent dark:bg-custom-accent text-custom-primary rounded-2xl p-6 mb-6 cursor-default">
 								<div className="flex items-center space-x-3 mb-4">
 									<MapPin className="w-6 h-6 text-custom-primary" />
 									<h2 className="text-2xl font-bold text-custom-primary">
@@ -311,7 +311,7 @@ const Home = () => {
 					initial={{ opacity: 0, y: 20 }}
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.5, delay: 0.5 }}
-					className="mt-16 bg-gradient-to-r from-custom-primary to-blue-600 dark:from-gray-800 dark:to-gray-900 text-white rounded-2xl p-8 shadow-lg">
+					className="mt-16 card bg-gradient-to-r from-custom-primary to-blue-600 dark:from-gray-800 dark:to-gray-900 text-white rounded-2xl p-8 cursor-default">
 					<div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
 						<div>
 							<h3 className="text-4xl font-bold text-custom-accent mb-2">

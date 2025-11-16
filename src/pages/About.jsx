@@ -54,7 +54,7 @@ const About = () => {
       <UltimateAnimatedBackground />
       
       <div className="min-h-screen relative z-10">
-        {/* Header */}
+      {/* Header */}
         <div className="bg-custom-primary dark:bg-gray-800 text-white py-12 shadow-lg relative z-10">
         <div className="container mx-auto px-4">
           <motion.div
@@ -313,7 +313,7 @@ const About = () => {
           </div>
         </motion.div>
       </div>
-      </div>
+    </div>
     </>
   );
 };

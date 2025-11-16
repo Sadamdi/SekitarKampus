@@ -144,7 +144,7 @@ const MapPage = () => {
       <UltimateAnimatedBackground />
       
       <div className="min-h-screen relative z-10">
-        {/* Header */}
+      {/* Header */}
         <div className="bg-custom-primary dark:bg-gray-800 text-white py-8 shadow-lg relative z-10">
         <div className="container mx-auto px-4">
           <motion.div
@@ -321,6 +321,8 @@ const MapPage = () => {
                     key={umkm.id}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
+                    whileHover={{ scale: 1.02, y: -2 }}
+                    whileTap={{ scale: 0.98 }}
                     onClick={() => handleMarkerClick(umkm)}
                     className={`p-3 rounded-lg cursor-pointer transition-all duration-300 ${
                       selectedUmkm?.id === umkm.id
@@ -406,7 +408,7 @@ const MapPage = () => {
           </div>
         </motion.div>
       </div>
-      </div>
+    </div>
     </>
   );
 };

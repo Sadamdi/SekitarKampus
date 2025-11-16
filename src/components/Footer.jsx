@@ -1,9 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Store, Mail, MapPin } from 'lucide-react';
 
 const Footer = () => {
+  const navigate = useNavigate();
   const currentYear = new Date().getFullYear();
+
+  const handleNavigation = (path) => {
+    navigate(path);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
     <footer className="bg-custom-primary dark:bg-gray-900 text-white mt-20 relative z-10">
@@ -34,24 +40,36 @@ const Footer = () => {
             <h3 className="text-lg font-bold mb-4">Link Cepat</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/" className="text-sm text-gray-300 dark:text-gray-400 hover:text-custom-accent transition-colors duration-300 relative z-10 pointer-events-auto touch-manipulation" style={{ touchAction: 'manipulation' }}>
+                <button 
+                  onClick={() => handleNavigation('/')}
+                  className="footer-link-button"
+                >
                   Beranda
-                </Link>
+                </button>
               </li>
               <li>
-                <Link to="/map" className="text-sm text-gray-300 dark:text-gray-400 hover:text-custom-accent transition-colors duration-300 relative z-10 pointer-events-auto touch-manipulation" style={{ touchAction: 'manipulation' }}>
+                <button 
+                  onClick={() => handleNavigation('/map')}
+                  className="footer-link-button"
+                >
                   Peta Interaktif
-                </Link>
+                </button>
               </li>
               <li>
-                <Link to="/favorit" className="text-sm text-gray-300 dark:text-gray-400 hover:text-custom-accent transition-colors duration-300 relative z-10 pointer-events-auto touch-manipulation" style={{ touchAction: 'manipulation' }}>
+                <button 
+                  onClick={() => handleNavigation('/favorit')}
+                  className="footer-link-button"
+                >
                   UMKM Favorit
-                </Link>
+                </button>
               </li>
               <li>
-                <Link to="/about" className="text-sm text-gray-300 dark:text-gray-400 hover:text-custom-accent transition-colors duration-300 relative z-10 pointer-events-auto touch-manipulation" style={{ touchAction: 'manipulation' }}>
+                <button 
+                  onClick={() => handleNavigation('/about')}
+                  className="footer-link-button"
+                >
                   Tentang Kami
-                </Link>
+                </button>
               </li>
             </ul>
           </div>
@@ -66,14 +84,13 @@ const Footer = () => {
               <Mail className="w-4 h-4" />
               <span>sekitarkampus@wia2025.com</span>
             </div>
-            <Link
-              to="/about"
-              className="inline-flex items-center space-x-2 text-sm text-custom-accent hover:text-yellow-400 transition-colors duration-300 mt-4 relative z-10 pointer-events-auto touch-manipulation"
-              style={{ touchAction: 'manipulation' }}
+            <button
+              onClick={() => handleNavigation('/about')}
+              className="footer-profile-button"
             >
               <span>Profil Tim</span>
               <span>→</span>
-            </Link>
+            </button>
           </div>
         </div>
 
