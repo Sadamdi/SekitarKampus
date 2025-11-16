@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/SekitarKampus/static/css/main.d8819593.css",
-    "main.js": "/SekitarKampus/static/js/main.1876b3c1.js",
+    "main.js": "/SekitarKampus/static/js/main.b2215e71.js",
     "static/media/PerempuanCookies.webp": "/SekitarKampus/static/media/PerempuanCookies.a09070a1c62710921492.webp",
     "static/media/LogoSekitarKampus.webp": "/SekitarKampus/static/media/LogoSekitarKampus.635b5ba7575358b77eb2.webp",
     "static/media/PerempuanThink.webp": "/SekitarKampus/static/media/PerempuanThink.7bd1b443c69d89151c47.webp",
     "static/media/Laki Think.webp": "/SekitarKampus/static/media/Laki Think.7347df8336cb810c295c.webp",
     "index.html": "/SekitarKampus/index.html",
     "main.d8819593.css.map": "/SekitarKampus/static/css/main.d8819593.css.map",
-    "main.1876b3c1.js.map": "/SekitarKampus/static/js/main.1876b3c1.js.map"
+    "main.b2215e71.js.map": "/SekitarKampus/static/js/main.b2215e71.js.map"
   },
   "entrypoints": [
     "static/css/main.d8819593.css",
-    "static/js/main.1876b3c1.js"
+    "static/js/main.b2215e71.js"
   ]
 }
