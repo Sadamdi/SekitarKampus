@@ -327,8 +327,6 @@ MIT License - Copyright (c) 2025 Tim SekitarKampus
 
 Lihat file [LICENSE](LICENSE) untuk detail lengkap.
 
-Proyek ini dibuat untuk keperluan kompetisi WIA 2025. Hak cipta tetap milik peserta sesuai ketentuan panitia.
-
 ---
 
 ## 📞 Kontak
