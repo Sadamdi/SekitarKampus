@@ -333,7 +333,7 @@ Lihat file [LICENSE](LICENSE) untuk detail lengkap.
 
 Untuk pertanyaan atau informasi lebih lanjut:
 - 📧 Email: sultanadamr@gmail.com
-- 🌐 Website: [Link akan ditambahkan setelah hosting]
+- 🌐 Website: https://sadamdi.github.io/SekitarKampus/
 
 ---
 

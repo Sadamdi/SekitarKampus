@@ -1,10 +1,10 @@
-import { motion } from 'framer-motion';
 import Fuse from 'fuse.js';
 import { MapPin } from 'lucide-react';
 import React, { useEffect, useMemo, useState } from 'react';
 import CampusFilter from '../components/CampusFilter';
 import CategoryFilter from '../components/CategoryFilter';
 import SearchBar from '../components/SearchBar';
+import ScrollReveal from '../components/ScrollReveal';
 import UMKMCard from '../components/UMKMCard';
 import UltimateAnimatedBackground from '../components/UltimateAnimatedBackground';
 import { getCampuses, getCategories, umkmData } from '../data/umkm';
@@ -22,7 +22,6 @@ const Home = () => {
 	const categories = getCategories();
 	const campuses = getCampuses();
 
-	// Request user location
 	useEffect(() => {
 		if ('geolocation' in navigator) {
 			navigator.geolocation.getCurrentPosition(
@@ -41,13 +40,11 @@ const Home = () => {
 		}
 	}, []);
 
-	// Filter by campus first
 	const filteredByCampus = useMemo(() => {
 		if (selectedCampus === 'Semua') return umkmData;
 		return umkmData.filter((umkm) => umkm.campus === selectedCampus);
 	}, [selectedCampus]);
 
-	// Filter by category
 	const filteredByCategory = useMemo(() => {
 		if (selectedCategory === 'Semua') return filteredByCampus;
 		return filteredByCampus.filter(
@@ -55,7 +52,6 @@ const Home = () => {
 		);
 	}, [selectedCategory, filteredByCampus]);
 
-	// Fuzzy search using Fuse.js
 	const fuse = useMemo(
 		() =>
 			new Fuse(filteredByCategory, {
@@ -70,7 +66,6 @@ const Home = () => {
 		return fuse.search(searchQuery).map((result) => result.item);
 	}, [searchQuery, fuse, filteredByCategory]);
 
-	// Get nearest UMKM if location available
 	const nearestUmkm = useMemo(() => {
 		if (!userLocation) return [];
 		const nearest = getNearestUmkm(
@@ -78,26 +73,20 @@ const Home = () => {
 			userLocation.lat,
 			userLocation.lng
 		);
-		return nearest.slice(0, 3); // Top 3 nearest
+		return nearest.slice(0, 3);
 	}, [userLocation]);
 
 	return (
 		<>
-			{/* Ultimate Animated Background with UMKM Photos */}
 			<UltimateAnimatedBackground />
 
 			<div className="container mx-auto px-4 py-8 relative z-10 overflow-visible">
-				{/* Hero Section */}
-				<motion.div
-					initial={{ opacity: 0, y: -20 }}
-					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.5 }}
+				<ScrollReveal
+					variant="fadeDown"
 					className="text-center mb-12 relative overflow-visible">
-					{/* Right Illustration - Laki Think (Rotated -70deg, sejajar dengan heading) - Desktop */}
-					<motion.div
-						initial={{ opacity: 0, x: 100 }}
-						animate={{ opacity: 1, x: 0 }}
-						transition={{ duration: 0.8, delay: 0.2 }}
+					<ScrollReveal
+						variant="fadeRight"
+						delay={0.06}
 						className="hidden lg:block absolute z-[1]"
 						style={{
 							transformOrigin: 'center',
@@ -110,13 +99,11 @@ const Home = () => {
 							className="w-80 h-auto object-contain opacity-80"
 							style={{ transform: 'rotate(-70deg)', objectFit: 'contain' }}
 						/>
-					</motion.div>
+					</ScrollReveal>
 
-					{/* Right Illustration - Laki Think (Mobile) */}
-					<motion.div
-						initial={{ opacity: 0, x: 50 }}
-						animate={{ opacity: 1, x: 0 }}
-						transition={{ duration: 0.8, delay: 0.2 }}
+					<ScrollReveal
+						variant="fadeRight"
+						delay={0.06}
 						className="lg:hidden absolute z-[1]"
 						style={{
 							transformOrigin: 'center',
@@ -129,7 +116,7 @@ const Home = () => {
 							className="w-64 h-auto object-contain opacity-80"
 							style={{ transform: 'rotate(-60deg)', objectFit: 'contain' }}
 						/>
-					</motion.div>
+					</ScrollReveal>
 
 					<h1 className="text-4xl md:text-5xl font-bold text-custom-primary dark:text-custom-accent mb-4 relative z-10">
 						Temukan UMKM Sekitar Kampus
@@ -138,27 +125,19 @@ const Home = () => {
 						Direktori digital yang membantu kamu menemukan jajanan, kopi, dan
 						layanan UMKM terbaik di sekitar kampus Malang
 					</p>
-				</motion.div>
+				</ScrollReveal>
 
-				{/* Search Bar */}
-				<motion.div
-					initial={{ opacity: 0, y: 20 }}
-					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.5, delay: 0.1 }}
-					className="mb-8 relative z-10">
+				<ScrollReveal className="mb-8 relative z-10" delay={0.04}>
 					<SearchBar
 						searchQuery={searchQuery}
 						setSearchQuery={setSearchQuery}
 					/>
-				</motion.div>
+				</ScrollReveal>
 
-				{/* Filter Section with Illustrations */}
 				<div className="relative mb-12 overflow-visible">
-					{/* Left Illustration - Perempuan Cookies (Rotated 70deg, sejajar dengan Filter Berdasarkan Kampus) - Desktop */}
-					<motion.div
-						initial={{ opacity: 0, x: -100 }}
-						animate={{ opacity: 1, x: 0 }}
-						transition={{ duration: 0.8, delay: 0.2 }}
+					<ScrollReveal
+						variant="fadeLeft"
+						delay={0.06}
 						className="hidden lg:block absolute z-[1]"
 						style={{
 							transformOrigin: 'center',
@@ -171,13 +150,11 @@ const Home = () => {
 							className="w-80 h-auto object-contain opacity-80"
 							style={{ transform: 'rotate(70deg)', objectFit: 'contain' }}
 						/>
-					</motion.div>
+					</ScrollReveal>
 
-					{/* Left Illustration - Perempuan Cookies (Mobile) */}
-					<motion.div
-						initial={{ opacity: 0, x: -50 }}
-						animate={{ opacity: 1, x: 0 }}
-						transition={{ duration: 0.8, delay: 0.2 }}
+					<ScrollReveal
+						variant="fadeLeft"
+						delay={0.06}
 						className="lg:hidden absolute z-[1]"
 						style={{
 							transformOrigin: 'center',
@@ -190,14 +167,9 @@ const Home = () => {
 							className="w-64 h-auto object-contain opacity-80"
 							style={{ transform: 'rotate(60deg)', objectFit: 'contain' }}
 						/>
-					</motion.div>
+					</ScrollReveal>
 
-					{/* Campus Filter */}
-					<motion.div
-						initial={{ opacity: 0, y: 20 }}
-						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.5, delay: 0.2 }}
-						className="mb-8 relative z-10">
+					<ScrollReveal className="mb-8 relative z-10" delay={0.05}>
 						<h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-4 text-center relative z-10">
 							Filter Berdasarkan Kampus
 						</h3>
@@ -206,14 +178,9 @@ const Home = () => {
 							selectedCampus={selectedCampus}
 							setSelectedCampus={setSelectedCampus}
 						/>
-					</motion.div>
+					</ScrollReveal>
 
-					{/* Category Filter */}
-					<motion.div
-						initial={{ opacity: 0, y: 20 }}
-						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.5, delay: 0.3 }}
-						className="relative z-10">
+					<ScrollReveal className="relative z-10" delay={0.08}>
 						<h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-4 text-center relative z-10">
 							Filter Berdasarkan Kategori
 						</h3>
@@ -222,20 +189,15 @@ const Home = () => {
 							selectedCategory={selectedCategory}
 							setSelectedCategory={setSelectedCategory}
 						/>
-					</motion.div>
+					</ScrollReveal>
 				</div>
 
-				{/* Nearest UMKM Section (if location available) */}
 				{locationPermission === 'granted' &&
 					nearestUmkm.length > 0 &&
 					!searchQuery &&
 					selectedCategory === 'Semua' &&
 					selectedCampus === 'Semua' && (
-						<motion.div
-							initial={{ opacity: 0, y: 20 }}
-							animate={{ opacity: 1, y: 0 }}
-							transition={{ duration: 0.5, delay: 0.3 }}
-							className="mb-12">
+						<ScrollReveal className="mb-12" delay={0.06}>
 							<div className="card bg-custom-accent dark:bg-custom-accent text-custom-primary rounded-2xl p-6 mb-6 cursor-default">
 								<div className="flex items-center space-x-3 mb-4">
 									<MapPin className="w-6 h-6 text-custom-primary" />
@@ -259,24 +221,20 @@ const Home = () => {
 							</div>
 
 							<div className="border-t-2 border-gray-300 dark:border-gray-700 my-12"></div>
-						</motion.div>
+						</ScrollReveal>
 					)}
 
-				{/* All UMKM Section */}
-				<motion.div
-					initial={{ opacity: 0, y: 20 }}
-					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.5, delay: 0.4 }}>
+				<ScrollReveal delay={0.06}>
 					<h2 className="text-3xl font-bold text-custom-primary dark:text-custom-accent mb-6">
 						{searchQuery
 							? `Hasil Pencarian (${searchResults.length})`
 							: selectedCampus !== 'Semua' && selectedCategory !== 'Semua'
-							? `UMKM ${selectedCampus} - ${selectedCategory} (${searchResults.length})`
-							: selectedCampus !== 'Semua'
-							? `UMKM ${selectedCampus} (${searchResults.length})`
-							: selectedCategory !== 'Semua'
-							? `UMKM Kategori ${selectedCategory} (${searchResults.length})`
-							: `Semua UMKM (${searchResults.length})`}
+								? `UMKM ${selectedCampus} - ${selectedCategory} (${searchResults.length})`
+								: selectedCampus !== 'Semua'
+									? `UMKM ${selectedCampus} (${searchResults.length})`
+									: selectedCategory !== 'Semua'
+										? `UMKM Kategori ${selectedCategory} (${searchResults.length})`
+										: `Semua UMKM (${searchResults.length})`}
 					</h2>
 
 					{searchResults.length === 0 ? (
@@ -304,14 +262,12 @@ const Home = () => {
 							))}
 						</div>
 					)}
-				</motion.div>
+				</ScrollReveal>
 
-				{/* Stats Section */}
-				<motion.div
-					initial={{ opacity: 0, y: 20 }}
-					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.5, delay: 0.5 }}
-					className="mt-16 card bg-gradient-to-r from-custom-primary to-blue-600 dark:from-gray-800 dark:to-gray-900 text-white rounded-2xl p-8 cursor-default">
+				<ScrollReveal
+					className="mt-16 card bg-gradient-to-r from-custom-primary to-blue-600 dark:from-gray-800 dark:to-gray-900 text-white rounded-2xl p-8 cursor-default"
+					delay={0.08}
+					variant="scale">
 					<div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
 						<div>
 							<h3 className="text-4xl font-bold text-custom-accent mb-2">
@@ -332,7 +288,7 @@ const Home = () => {
 							<p className="text-gray-200">Gratis & Mudah</p>
 						</div>
 					</div>
-				</motion.div>
+				</ScrollReveal>
 			</div>
 		</>
 	);

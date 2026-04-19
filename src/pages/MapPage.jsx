@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect, createRef } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import ScrollReveal from '../components/ScrollReveal';
 import { MapPin, Store, X, Eye, Maximize2 } from 'lucide-react';
 import L from 'leaflet';
 import { umkmData } from '../data/umkm';
@@ -147,11 +148,7 @@ const MapPage = () => {
       {/* Header */}
         <div className="bg-custom-primary dark:bg-gray-800 text-white py-8 shadow-lg relative z-10">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
+          <ScrollReveal variant="fadeDown">
             <div className="flex items-center space-x-3 mb-3">
               <MapPin className="w-8 h-8 text-custom-accent" />
               <h1 className="text-4xl md:text-5xl font-bold">Peta Interaktif</h1>
@@ -161,17 +158,15 @@ const MapPage = () => {
                 ? `Menampilkan: ${focusedUmkm.name}` 
                 : 'Temukan lokasi semua UMKM di peta dan dapatkan arah menuju mereka'}
             </p>
-          </motion.div>
+          </ScrollReveal>
         </div>
       </div>
 
       <div className="container mx-auto px-4 py-8 relative z-10">
         {/* Category Filter & Reset Button */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
+        <ScrollReveal
           className="mb-6 flex flex-wrap items-center gap-3"
+          delay={0.04}
         >
           {/* Reset View Button */}
           {focusedUmkm && (
@@ -204,13 +199,12 @@ const MapPage = () => {
               {category} ({category === 'Semua' ? umkmData.length : umkmData.filter(u => u.category === category).length})
             </button>
           ))}
-        </motion.div>
+        </ScrollReveal>
 
         {/* Info Banner when focused */}
         {focusedUmkm && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
+          <ScrollReveal
+            variant="fadeDown"
             className="mb-6 bg-gradient-to-r from-custom-accent to-yellow-400 text-custom-primary rounded-xl p-4 shadow-lg"
           >
             <div className="flex items-center justify-between">
@@ -228,16 +222,15 @@ const MapPage = () => {
                 <X className="w-5 h-5" />
               </button>
             </div>
-          </motion.div>
+          </ScrollReveal>
         )}
 
         {/* Map & Sidebar */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Map */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+          <ScrollReveal
+            variant="scale"
+            delay={0.06}
             className="lg:col-span-2 card overflow-hidden"
             style={{ height: '450px' }}
           >
@@ -300,13 +293,12 @@ const MapPage = () => {
                 </Marker>
               ))}
             </MapContainer>
-          </motion.div>
+          </ScrollReveal>
 
           {/* Sidebar List */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+          <ScrollReveal
+            variant="fadeRight"
+            delay={0.08}
             className="lg:col-span-1"
           >
             <div className="card p-4" style={{ maxHeight: '450px', overflowY: 'auto' }}>
@@ -365,16 +357,11 @@ const MapPage = () => {
                 ))}
               </div>
             </div>
-          </motion.div>
+          </ScrollReveal>
         </div>
 
         {/* Legend */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-6 card p-4"
-        >
+        <ScrollReveal className="mt-6 card p-4" delay={0.06}>
           <h3 className="font-bold text-custom-primary dark:text-custom-accent mb-3">
             📌 Legenda & Petunjuk:
           </h3>
@@ -406,7 +393,7 @@ const MapPage = () => {
               </ul>
             </div>
           </div>
-        </motion.div>
+        </ScrollReveal>
       </div>
     </div>
     </>

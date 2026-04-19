@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import ScrollReveal from "../components/ScrollReveal";
 import {
   MapPin,
   Clock,
@@ -66,11 +66,7 @@ const UMKMDetail = () => {
       {/* Header */}
       <div className="bg-custom-primary dark:bg-gray-800 text-white py-8 shadow-lg">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
+          <ScrollReveal variant="fadeDown">
             <button
               onClick={() => navigate(-1)}
               className="flex items-center space-x-2 text-custom-accent hover:text-yellow-400 transition-colors duration-300 mb-4"
@@ -121,7 +117,7 @@ const UMKMDetail = () => {
                 />
               </button>
             </div>
-          </motion.div>
+          </ScrollReveal>
         </div>
       </div>
 
@@ -130,36 +126,22 @@ const UMKMDetail = () => {
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-8">
             {/* Image Gallery */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-            >
+            <ScrollReveal delay={0.04}>
               <ImageGallery images={umkm.images} name={umkm.name} />
-            </motion.div>
+            </ScrollReveal>
 
             {/* Description */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="card p-6"
-            >
+            <ScrollReveal className="card p-6" delay={0.06}>
               <h2 className="text-2xl font-bold text-custom-primary dark:text-custom-accent mb-4">
                 Tentang
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                 {umkm.description}
               </p>
-            </motion.div>
+            </ScrollReveal>
 
             {/* Menu */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="card p-6"
-            >
+            <ScrollReveal className="card p-6" delay={0.08}>
               <h2 className="text-2xl font-bold text-custom-primary dark:text-custom-accent mb-6">
                 Menu & Harga
               </h2>
@@ -190,15 +172,10 @@ const UMKMDetail = () => {
                   </div>
                 ))}
               </div>
-            </motion.div>
+            </ScrollReveal>
 
             {/* Map */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="card p-6"
-            >
+            <ScrollReveal className="card p-6" delay={0.1}>
               <h2 className="text-2xl font-bold text-custom-primary dark:text-custom-accent mb-4">
                 Lokasi
               </h2>
@@ -222,15 +199,14 @@ const UMKMDetail = () => {
                   <span>Buka di Google Maps</span>
                 </a>
               </div>
-            </motion.div>
+            </ScrollReveal>
           </div>
 
           {/* Sidebar Info */}
           <div className="lg:col-span-1">
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+            <ScrollReveal
+              variant="fadeRight"
+              delay={0.06}
               className="card p-6 sticky top-24"
             >
               <div className="flex items-center space-x-3 mb-6">
@@ -298,7 +274,7 @@ const UMKMDetail = () => {
                   </div>
                 )}
               </div>
-            </motion.div>
+            </ScrollReveal>
           </div>
         </div>
       </div>

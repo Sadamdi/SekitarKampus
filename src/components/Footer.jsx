@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Store, Mail, MapPin } from 'lucide-react';
+import ScrollReveal from './ScrollReveal';
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -14,6 +15,7 @@ const Footer = () => {
   return (
     <footer className="bg-custom-primary dark:bg-gray-900 text-white mt-20 relative z-10">
       <div className="container mx-auto px-4 py-12 relative z-10">
+        <ScrollReveal>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* About Section */}
           <div>
@@ -93,8 +95,10 @@ const Footer = () => {
             </button>
           </div>
         </div>
+        </ScrollReveal>
 
         {/* Bottom Bar */}
+        <ScrollReveal delay={0.06}>
         <div className="border-t border-gray-700 dark:border-gray-800 mt-8 pt-6 text-center">
           <p className="text-sm text-gray-300 dark:text-gray-400">
             <span>© {currentYear} SekitarKampus</span>
@@ -103,6 +107,7 @@ const Footer = () => {
             Membantu UMKM Lokal Go Digital
           </p>
         </div>
+        </ScrollReveal>
       </div>
     </footer>
   );

@@ -77,13 +77,13 @@ export const detectGPU = () => {
 		// Cek dedicated GPU
 		const isDedicated = dedicatedKeywords.some(
 			(keyword) =>
-				rendererLower.includes(keyword) || vendorLower.includes(keyword)
+				rendererLower.includes(keyword) || vendorLower.includes(keyword),
 		);
 
 		// Cek integrated GPU
 		const isIntegrated = integratedKeywords.some(
 			(keyword) =>
-				rendererLower.includes(keyword) || vendorLower.includes(keyword)
+				rendererLower.includes(keyword) || vendorLower.includes(keyword),
 		);
 
 		if (isDedicated) {
@@ -138,46 +138,69 @@ export const detectGPU = () => {
 };
 
 /**
- * Mendapatkan konfigurasi animasi berdasarkan GPU
+ * Mendapatkan konfigurasi animasi berdasarkan GPU.
+ * Lapisan CSS (aurora, wave, bentuk) + tsParticles (interaksi mouse resmi)
+ * dengan kepadatan/fps disesuaikan per tier.
  */
 export const getAnimationConfig = (gpuInfo) => {
 	const { type, tier } = gpuInfo;
 
 	if (type === 'dedicated') {
-		// Dedicated GPU - Full animasi
 		return {
-			particleCount: 6,
-			enableCanvasParticles: true,
+			enableTsParticles: true,
+			tsParticles: {
+				number: 120,
+				fpsLimit: 60,
+				linkDistance: 148,
+				moveSpeed: 0.85,
+				grabDistance: 190,
+				pushQuantity: 3,
+				links: true,
+			},
 			enableBlobAnimations: true,
 			enableSVGWaves: true,
-			blobAnimationDuration: 20,
-			enableGlowEffects: true,
-			enableMouseInteraction: true,
-			enableGradientMeshAnimation: true,
+			floatingShapeCount: 8,
+			enableMouseParallax: true,
+			parallaxStrength: 1,
+			enableParallaxSpotlight: true,
 		};
 	} else if (type === 'integrated' && tier === 'medium') {
-		// Integrated GPU medium (Iris Xe, Adreno 6/7) - Animasi bagus dengan optimasi
 		return {
-			particleCount: 5,
-			enableCanvasParticles: true,
+			enableTsParticles: true,
+			tsParticles: {
+				number: 88,
+				fpsLimit: 60,
+				linkDistance: 138,
+				moveSpeed: 0.65,
+				grabDistance: 175,
+				pushQuantity: 2,
+				links: true,
+			},
 			enableBlobAnimations: true,
 			enableSVGWaves: true,
-			blobAnimationDuration: 30, // Lebih lama = lebih smooth, kurang berat
-			enableGlowEffects: true,
-			enableMouseInteraction: true,
-			enableGradientMeshAnimation: true,
+			floatingShapeCount: 5,
+			enableMouseParallax: true,
+			parallaxStrength: 0.62,
+			enableParallaxSpotlight: false,
 		};
 	} else {
-		// Integrated GPU low atau GPU lemah - Animasi tetap bagus tapi lebih ringan
 		return {
-			particleCount: 4, // Sedikit lebih banyak dari sebelumnya
-			enableCanvasParticles: true,
-			enableBlobAnimations: true, // Tetap enable tapi dengan optimasi
-			enableSVGWaves: true, // Tetap enable
-			blobAnimationDuration: 35, // Lebih lama = lebih smooth, kurang berat GPU
-			enableGlowEffects: true, // Tetap enable
-			enableMouseInteraction: true, // Tetap enable
-			enableGradientMeshAnimation: true, // Tetap enable
+			enableTsParticles: true,
+			tsParticles: {
+				number: 56,
+				fpsLimit: 48,
+				linkDistance: 124,
+				moveSpeed: 0.5,
+				grabDistance: 160,
+				pushQuantity: 1,
+				links: true,
+			},
+			enableBlobAnimations: true,
+			enableSVGWaves: false,
+			floatingShapeCount: 3,
+			enableMouseParallax: true,
+			parallaxStrength: 0.28,
+			enableParallaxSpotlight: false,
 		};
 	}
 };
